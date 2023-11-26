@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Content;
 using UnityEngine;
 
 public class CarController : MonoBehaviour
@@ -27,6 +28,13 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform frontRightWheeTransform;
     [SerializeField] private Transform rearLeftWheelTransform;
     [SerializeField] private Transform rearRightWheelTransform;
+
+    //Lowered center of mass in rigidbody to prevent car from flipping
+    private void Start()
+    {
+        //Might cause car to behave like a pendulum?
+        gameObject.GetComponent<Rigidbody>().centerOfMass += new Vector3(0, -1f, 0);
+    }
 
     private void FixedUpdate()
     {
@@ -78,9 +86,10 @@ public class CarController : MonoBehaviour
     private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform)
     {
         Vector3 pos;
-        Quaternion rot
-; wheelCollider.GetWorldPose(out pos, out rot);
+        Quaternion rot;       
+        wheelCollider.GetWorldPose(out pos, out rot);
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
     }
+
 }
