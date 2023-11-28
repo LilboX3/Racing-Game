@@ -6,6 +6,7 @@ using UnityEngine;
 public class RacerScript : MonoBehaviour
 {
     public float laptime;
+    private bool TimerRunning = false;
     private bool startTimer = false;
 
     public UnityEngine.UI.Text timer;
@@ -19,7 +20,13 @@ public class RacerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (startTimer)
+        if(!startTimer && (Input.GetAxis("Vertical")!=0))
+        {
+            Debug.Log("Key pressed, starting timer now");
+            startTimer = true;
+            TimerRunning = true;
+        }
+        if (startTimer&&TimerRunning)
         {
             //Time.deltaTime: how long it took to get to that frame
             laptime += Time.deltaTime;
@@ -34,10 +41,7 @@ public class RacerScript : MonoBehaviour
         Debug.Log("collided!");
         if(other.tag == "Finish")
         {
-            startTimer = false;
-        } else
-        {
-            startTimer = true;
+            TimerRunning = false;
         }
         
     }
