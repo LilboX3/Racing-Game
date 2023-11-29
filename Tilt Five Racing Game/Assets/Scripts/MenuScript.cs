@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
+    public void Update()
+    {
+        //Restart game with R key
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RestartGame();
+        }
+    }
     public void PlayGame()
     {
         SceneManager.LoadSceneAsync(1);
