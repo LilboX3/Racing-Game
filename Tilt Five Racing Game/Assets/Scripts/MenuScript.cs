@@ -8,7 +8,7 @@ public class MenuScript : MonoBehaviour
     public void Update()
     {
         //Restart game with R key
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetButton("Restart"))
         {
             RestartGame();
         }
