@@ -38,7 +38,7 @@ public class CarController : MonoBehaviour
         gameObject.GetComponent<Rigidbody>().centerOfMass += new Vector3(0, -1f, 0);
     }
 
-    private void FixedUpdate()
+    private void FixedUpdate() 
     {
         GetInput();
         HandleMotor();
