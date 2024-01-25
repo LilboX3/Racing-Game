@@ -3186,6 +3186,11 @@ MonoBehaviour:
   target: {fileID: 1986785795}
   translateSpeed: 10
   rotationSpeed: 10
+--- !u!20 &332560549 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5096850156648964928, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
+  m_PrefabInstance: {fileID: 551279900}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &333267481
 GameObject:
   m_ObjectHideFlags: 0
@@ -5024,17 +5029,21 @@ PrefabInstance:
       propertyPath: m_Depth
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 5096850156648964928, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
+      propertyPath: orthographic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5096850156648964929, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 93.5
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 5096850156648964929, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28.87
+      value: 61
       objectReference: {fileID: 0}
     - target: {fileID: 5096850156648964929, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.31
+      value: 19.3
       objectReference: {fileID: 0}
     - target: {fileID: 5096850156648964929, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5134,24 +5143,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6601963360236768345, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
       propertyPath: editorSettings.selectedPlayerSettingsPanel
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6601963360236768345, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
       propertyPath: allPlayerSettings.Array.data[0].glassesSettings.headPoseCamera
       value: 
-      objectReference: {fileID: 1462617184}
+      objectReference: {fileID: 332560549}
     - target: {fileID: 6601963360236768345, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
       propertyPath: allPlayerSettings.Array.data[1].glassesSettings.headPoseCamera
       value: 
-      objectReference: {fileID: 1462617184}
+      objectReference: {fileID: 332560549}
     - target: {fileID: 6601963360236768345, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
       propertyPath: allPlayerSettings.Array.data[2].glassesSettings.headPoseCamera
       value: 
-      objectReference: {fileID: 1462617184}
+      objectReference: {fileID: 332560549}
     - target: {fileID: 6601963360236768345, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
       propertyPath: allPlayerSettings.Array.data[3].glassesSettings.headPoseCamera
       value: 
-      objectReference: {fileID: 1462617184}
+      objectReference: {fileID: 332560549}
     - target: {fileID: 7483436292649545910, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
       propertyPath: m_Name
       value: Tilt Five Prefab
@@ -12871,7 +12880,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1462617183
 AudioListener:
   m_ObjectHideFlags: 0
