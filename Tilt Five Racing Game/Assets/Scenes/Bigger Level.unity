@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3170,22 +3170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d9ebe7e080db34a91a0f995edc6029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &332560547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 332560544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4cd1ce65137df94890959661ab28109, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offset: {x: 0, y: 20, z: -11}
-  target: {fileID: 1986785795}
-  translateSpeed: 10
-  rotationSpeed: 10
 --- !u!20 &332560549 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 5096850156648964928, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
@@ -5067,15 +5051,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5096850158276147074, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
       propertyPath: m_LocalScale.x
-      value: 10.425381
+      value: 2.1954896
       objectReference: {fileID: 0}
     - target: {fileID: 5096850158276147074, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
       propertyPath: m_LocalScale.y
-      value: 10.425381
+      value: 2.1954896
       objectReference: {fileID: 0}
     - target: {fileID: 5096850158276147074, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
       propertyPath: m_LocalScale.z
-      value: 10.425381
+      value: 2.1954896
       objectReference: {fileID: 0}
     - target: {fileID: 5096850158276147074, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5169,9 +5153,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5096850156648964934, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 5096850158276147072, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 332560547}
+      addedObject: {fileID: 1212971830}
     - targetCorrespondingSourceObject: {fileID: 5096850156648964934, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
       insertIndex: -1
       addedObject: {fileID: 332560546}
@@ -10428,6 +10412,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4206691162961123273, guid: f8039f1de558b2e4e93d672b3d2290cb, type: 3}
   m_PrefabInstance: {fileID: 1363469649}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1212971827 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5096850158276147072, guid: ac17611f933f2524b8ee0a5036ffd429, type: 3}
+  m_PrefabInstance: {fileID: 551279900}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1212971830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212971827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4cd1ce65137df94890959661ab28109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0, z: -3}
+  target: {fileID: 1986785795}
+  translateSpeed: 10
+  rotationSpeed: 10
 --- !u!1 &1217593352
 GameObject:
   m_ObjectHideFlags: 0
