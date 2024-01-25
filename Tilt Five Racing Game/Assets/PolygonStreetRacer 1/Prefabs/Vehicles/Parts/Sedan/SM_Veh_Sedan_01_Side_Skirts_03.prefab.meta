@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 0065894b1d264fa4ab05df0532426f01
+timeCreated: 1617759618
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Prefabs/Vehicles/Parts/Sedan/SM_Veh_Sedan_01_Side_Skirts_03.prefab
+  uploadId: 616459

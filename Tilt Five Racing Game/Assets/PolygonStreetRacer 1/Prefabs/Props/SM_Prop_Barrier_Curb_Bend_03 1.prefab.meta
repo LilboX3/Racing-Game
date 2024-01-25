@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 8c2f1945019186d42a62e98d5145883f
+timeCreated: 1615413484
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Prefabs/Props/SM_Prop_Barrier_Curb_Bend_03
+    1.prefab
+  uploadId: 616459

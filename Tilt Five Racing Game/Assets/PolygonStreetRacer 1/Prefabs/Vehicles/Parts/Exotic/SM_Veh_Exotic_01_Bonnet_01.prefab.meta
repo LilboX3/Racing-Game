@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: cf4f8db253fd5bb4c88d4a99016852e1
+timeCreated: 1617759600
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Prefabs/Vehicles/Parts/Exotic/SM_Veh_Exotic_01_Bonnet_01.prefab
+  uploadId: 616459

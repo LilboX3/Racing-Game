@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3b7fec0b79082384e8d5911d7458c251
+timeCreated: 1620187023
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Models/Convex/SM_Env_Ground_Detail_Manhole_01_Convex.asset
+  uploadId: 616459

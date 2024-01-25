@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 59ce4f93625af3b4cb5d17d8a68ecf0e
+timeCreated: 1616034194
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Prefabs/Props/SM_Prop_SprayBottle_01.prefab
+  uploadId: 616459

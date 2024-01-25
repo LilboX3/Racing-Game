@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 6839cc5e9ee1ca54792005be3657052d
+timeCreated: 1620256055
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Models/Convex/SM_Veh_Attach_Scifi_Wing_02_Convex.asset
+  uploadId: 616459

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: c1452c3e7b9f2e14680296ee5a308dc0
+timeCreated: 1614308990
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Materials/Cars/PolygonStreetRacer_Mat_Veh_Stripes_01.mat
+  uploadId: 616459

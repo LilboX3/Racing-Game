@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: edf1e76ebce938f4ca5b6d6b34c79ce4
+timeCreated: 1617759579
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Prefabs/Vehicles/Parts/Exotic/SM_Veh_Exotic_01_Light_Covers_01.prefab
+  uploadId: 616459

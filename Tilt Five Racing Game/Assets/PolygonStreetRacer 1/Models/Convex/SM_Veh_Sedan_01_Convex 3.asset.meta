@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: bd68694f36fb26d4089de9d8865b412d
+timeCreated: 1620257134
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Models/Convex/SM_Veh_Sedan_01_Convex 3.asset
+  uploadId: 616459

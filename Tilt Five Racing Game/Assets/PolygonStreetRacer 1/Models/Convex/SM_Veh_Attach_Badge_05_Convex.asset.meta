@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 49346b5abcb8d60429540afcd5256a57
+timeCreated: 1620256002
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Models/Convex/SM_Veh_Attach_Badge_05_Convex.asset
+  uploadId: 616459

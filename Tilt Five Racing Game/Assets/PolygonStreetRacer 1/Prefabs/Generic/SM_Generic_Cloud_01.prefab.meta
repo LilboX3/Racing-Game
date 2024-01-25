@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a3557357da65f0245ad9384f3be2a36c
+timeCreated: 1615516288
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Prefabs/Generic/SM_Generic_Cloud_01.prefab
+  uploadId: 616459

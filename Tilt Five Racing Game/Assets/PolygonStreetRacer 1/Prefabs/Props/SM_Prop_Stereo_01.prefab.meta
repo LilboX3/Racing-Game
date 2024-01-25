@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 6e1c14eea9c06df40abf88aaaab943fc
+timeCreated: 1616034192
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Prefabs/Props/SM_Prop_Stereo_01.prefab
+  uploadId: 616459

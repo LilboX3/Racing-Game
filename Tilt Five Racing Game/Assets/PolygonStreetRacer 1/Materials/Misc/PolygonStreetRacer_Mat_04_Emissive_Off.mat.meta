@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d304da84149f2b14386f502b1d768307
+timeCreated: 1614308990
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Materials/Misc/PolygonStreetRacer_Mat_04_Emissive_Off.mat
+  uploadId: 616459

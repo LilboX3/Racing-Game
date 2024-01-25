@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 0085b20b9c719294681758214775945c
+timeCreated: 1579832224
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Models/Convex/SM_Veh_Boat_01_Snow_Convex.asset
+  uploadId: 616459

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d43346b6483306e45893173bb294cdb5
+timeCreated: 1620184724
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Models/Convex/SM_Prop_Sign_Number_3_Convex.asset
+  uploadId: 616459

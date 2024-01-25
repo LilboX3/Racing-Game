@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: b29317a5390fcaa45a96d272d82b3a8d
+timeCreated: 1620256007
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Models/Convex/SM_Veh_Attach_Wheel_14_Convex.asset
+  uploadId: 616459

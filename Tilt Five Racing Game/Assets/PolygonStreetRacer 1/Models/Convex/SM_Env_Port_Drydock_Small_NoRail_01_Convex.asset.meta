@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: c11d8c8796b2d714b99af48e27a06842
+timeCreated: 1620186734
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Models/Convex/SM_Env_Port_Drydock_Small_NoRail_01_Convex.asset
+  uploadId: 616459

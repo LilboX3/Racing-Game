@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 76d661318f148fe498d164660054b344
+timeCreated: 1617759607
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Prefabs/Vehicles/Parts/Muscle/SM_Veh_Muscle_01_Wheelie_Bars_01.prefab
+  uploadId: 616459

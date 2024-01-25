@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e2a7c22e333b01549bcbde059bfb1da7
+timeCreated: 1620256308
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Models/Convex/SM_Veh_Ute_01_Front_Bumper_01_Convex.asset
+  uploadId: 616459

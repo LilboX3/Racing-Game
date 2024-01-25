@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: bce8a63ec347de1448e2d1cf8128435b
+timeCreated: 1619564135
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Prefabs/Characters/Attach/SM_Chr_Attach_Earrings_02.prefab
+  uploadId: 616459

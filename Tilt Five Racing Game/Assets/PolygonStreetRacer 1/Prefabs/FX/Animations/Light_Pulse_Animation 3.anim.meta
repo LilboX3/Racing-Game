@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 21df04aa468e95648ba7ada1c9324923
+timeCreated: 1618454432
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Prefabs/FX/Animations/Light_Pulse_Animation
+    3.anim
+  uploadId: 616459

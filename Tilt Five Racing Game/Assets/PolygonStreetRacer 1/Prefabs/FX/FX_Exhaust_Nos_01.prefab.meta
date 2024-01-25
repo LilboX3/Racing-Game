@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 6410c47007cd0eb42b8e1785baa8f113
+timeCreated: 1618443903
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Prefabs/FX/FX_Exhaust_Nos_01.prefab
+  uploadId: 616459

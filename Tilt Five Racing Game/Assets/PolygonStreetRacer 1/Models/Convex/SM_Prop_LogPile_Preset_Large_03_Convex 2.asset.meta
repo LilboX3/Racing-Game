@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: dc13efa5f34cfe2468f9b22b9c41e02b
+timeCreated: 1620185283
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Models/Convex/SM_Prop_LogPile_Preset_Large_03_Convex
+    2.asset
+  uploadId: 616459

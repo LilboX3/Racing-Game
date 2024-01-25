@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 69e7a48d5309862408fbd6aa4f47597b
+timeCreated: 1620256311
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Models/Convex/SM_Veh_Attach_Motorbike_Exhaust_01_Convex.asset
+  uploadId: 616459

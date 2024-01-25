@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: bef562e73b4e2b44e869b856babe24dc
+timeCreated: 1619564131
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Prefabs/Characters/Attach/SM_Chr_Attach_Hair_Male_04.prefab
+  uploadId: 616459

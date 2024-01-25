@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a73e50958c43464409227d381f36a0c3
+timeCreated: 1620184834
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Models/Convex/SM_Prop_TyreSingle_01_Convex.asset
+  uploadId: 616459

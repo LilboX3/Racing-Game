@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 1bfe96922e62f2940ada4f0683203a50
+timeCreated: 1620186701
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Models/Convex/SM_Env_PortEdge_Angle_01_Convex.asset
+  uploadId: 616459

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 792c919e5c9d9a04a84f6fb8e3b49d3a
+timeCreated: 1620255954
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Models/Convex/SM_Veh_Attach_Intake_08_Convex.asset
+  uploadId: 616459

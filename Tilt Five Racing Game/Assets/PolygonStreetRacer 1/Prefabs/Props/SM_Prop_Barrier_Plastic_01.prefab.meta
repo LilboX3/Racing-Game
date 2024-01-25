@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5406c6f1a8e84b94ebdfa82d34fc0752
+timeCreated: 1615341462
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194800
+  packageName: POLYGON - Street Racer - Low Poly 3D Art by Synty
+  packageVersion: 1.02
+  assetPath: Assets/PolygonStreetRacer/Prefabs/Props/SM_Prop_Barrier_Plastic_01.prefab
+  uploadId: 616459
