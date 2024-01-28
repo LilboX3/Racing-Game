@@ -23,6 +23,7 @@ public class CarController : MonoBehaviour
 
     [Header("Steering Settings")]
     [SerializeField] private float maxSteerAngle;
+    [SerializeField] private float maxSteeringWheelRotation = 135f;
 
     //Lowered center of mass in rigidbody to prevent car from flipping
     //Might cause car to behave like a pendulum? see Start()
@@ -41,12 +42,18 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform rearRightWheelTransform;
     [SerializeField] private Transform rearLeftWheelTransform;
 
+    [Header("Steering Wheel")]
+    [SerializeField] private Transform steeringWheelTransform;
+    private Quaternion initialSteeringWheelRotation;
+
     private void Start()
     {
         // adjusting the center of mass of the car.
         // lower to prevent flipping.
         // might cause swinging like a pendulum.
         gameObject.GetComponent<Rigidbody>().centerOfMass += centerOfMassOffset;
+
+        initialSteeringWheelRotation = steeringWheelTransform.localRotation;
     }
 
     private void FixedUpdate() 
@@ -55,7 +62,7 @@ public class CarController : MonoBehaviour
         HandleMotor();
         HandleSteering();
         UpdateWheels();
-
+        UpdateSteeringWheel();
     }
 
 
@@ -106,5 +113,15 @@ public class CarController : MonoBehaviour
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
     }
+
+    private void UpdateSteeringWheel()
+    {
+        float normalizedSteerAngle = currentSteerAngle / maxSteerAngle;
+        float steeringWheelRotation = normalizedSteerAngle * maxSteeringWheelRotation;
+
+        Quaternion steeringWheelRotationQuat = initialSteeringWheelRotation * Quaternion.Euler(0f, 0f, -steeringWheelRotation);
+        steeringWheelTransform.localRotation = steeringWheelRotationQuat;
+    }
+
 
 }

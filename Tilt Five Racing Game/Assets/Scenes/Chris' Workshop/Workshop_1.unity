@@ -4098,6 +4098,7 @@ MonoBehaviour:
   motorForce: 1000
   breakForce: 3000
   maxSteerAngle: 30
+  maxSteeringWheelRotation: 180
   centerOfMassOffset: {x: 0, y: -1, z: 0}
   frontRightWheelCollider: {fileID: 1347613894}
   frontLeftWheelCollider: {fileID: 1252073133}
@@ -4107,6 +4108,7 @@ MonoBehaviour:
   frontLeftWheelTransform: {fileID: 1388128346}
   rearRightWheelTransform: {fileID: 1252181972}
   rearLeftWheelTransform: {fileID: 203387796}
+  steeringWheelTransform: {fileID: 0}
 --- !u!65 &1037585533
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13890,6 +13892,7 @@ MonoBehaviour:
   motorForce: 2500
   breakForce: 3000
   maxSteerAngle: 30
+  maxSteeringWheelRotation: 135
   centerOfMassOffset: {x: 0, y: -1, z: 0}
   frontRightWheelCollider: {fileID: 8540170664913703483}
   frontLeftWheelCollider: {fileID: 5976228670406038265}
@@ -13899,6 +13902,7 @@ MonoBehaviour:
   frontLeftWheelTransform: {fileID: 2674848370977041802}
   rearRightWheelTransform: {fileID: 6026764138677007435}
   rearLeftWheelTransform: {fileID: 8050417015993360777}
+  steeringWheelTransform: {fileID: 3384355586365449814}
 --- !u!54 &8488193833306714789
 Rigidbody:
   m_ObjectHideFlags: 0
