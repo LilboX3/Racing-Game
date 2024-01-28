@@ -17,7 +17,7 @@ public class CarParticleController : MonoBehaviour
     private WheelColliders wheelColliders;
     public WheelEmitters wheelEmitters;
 
-    [Header("Tire Slipping Threshhold to start Drifting Emissions")]
+    [Header("Tire Slipping Threshhold to Start Drifting Emissions")]
     [SerializeField] private float slipAllowance = 0.2f; // default = 0.2f
 
     // Start is called before the first frame update
@@ -112,12 +112,6 @@ public class CarParticleController : MonoBehaviour
             wheelEmitters.RL_WheelParticles.Stop();
             wheelEmitters.RL_WheelTrail.emitting = false;
         }
-
-        // debug
-        Debug.Log("Sideways Slip - FR: " + wheelHits[0].sidewaysSlip);
-        Debug.Log("Sideways Slip - FL: " + wheelHits[1].sidewaysSlip);
-        Debug.Log("Sideways Slip - RR: " + wheelHits[2].sidewaysSlip);
-        Debug.Log("Sideways Slip - RL: " + wheelHits[3].sidewaysSlip);
     }
 
     [System.Serializable]
