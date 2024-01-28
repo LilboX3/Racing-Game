@@ -17,25 +17,36 @@ public class CarController : MonoBehaviour
     private float currentbreakForce;
     private bool isBreaking;
 
+    [Header("Motor Settings")]
     [SerializeField] private float motorForce;
     [SerializeField] private float breakForce;
+
+    [Header("Steering Settings")]
     [SerializeField] private float maxSteerAngle;
 
+    //Lowered center of mass in rigidbody to prevent car from flipping
+    //Might cause car to behave like a pendulum? see Start()
+    [Header("Rigidbody Center of Mass Offset")]
+    [SerializeField] private Vector3 centerOfMassOffset = new Vector3(0f, -1f, 0f);
+
+    [Header("Wheel Colliders")]
     [SerializeField] private WheelCollider frontRightWheelCollider;
     [SerializeField] private WheelCollider frontLeftWheelCollider;
     [SerializeField] private WheelCollider rearRightWheelCollider;
     [SerializeField] private WheelCollider rearLeftWheelCollider;
-
+    
+    [Header("Wheel Transforms")]
     [SerializeField] private Transform frontRightWheelTransform;
     [SerializeField] private Transform frontLeftWheelTransform;
     [SerializeField] private Transform rearRightWheelTransform;
     [SerializeField] private Transform rearLeftWheelTransform;
 
-    //Lowered center of mass in rigidbody to prevent car from flipping
     private void Start()
     {
-        //Might cause car to behave like a pendulum?
-        gameObject.GetComponent<Rigidbody>().centerOfMass += new Vector3(0, -1f, 0);
+        // adjusting the center of mass of the car.
+        // lower to prevent flipping.
+        // might cause swinging like a pendulum.
+        gameObject.GetComponent<Rigidbody>().centerOfMass += centerOfMassOffset;
     }
 
     private void FixedUpdate() 
@@ -44,6 +55,7 @@ public class CarController : MonoBehaviour
         HandleMotor();
         HandleSteering();
         UpdateWheels();
+
     }
 
 
@@ -79,17 +91,21 @@ public class CarController : MonoBehaviour
 
     private void UpdateWheels()
     {
-        UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform);
-        UpdateSingleWheel(frontRightWheelCollider, frontRightWheelTransform);
-        UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform);
-        UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform);
+        UpdateSingleWheel(frontRightWheelCollider, frontRightWheelTransform, false);
+        UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform, true);
+        UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform, false);
+        UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform, true);
     }
 
-    private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform)
+    private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform, bool isLeftWheel)
     {
         Vector3 pos;
         Quaternion rot;       
         wheelCollider.GetWorldPose(out pos, out rot);
+        if (isLeftWheel)
+        {
+            rot *= Quaternion.Euler(0f, 180f, 0f);
+        }
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
     }
