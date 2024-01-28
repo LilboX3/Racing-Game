@@ -91,21 +91,18 @@ public class CarController : MonoBehaviour
 
     private void UpdateWheels()
     {
-        UpdateSingleWheel(frontRightWheelCollider, frontRightWheelTransform, false);
-        UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform, true);
-        UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform, false);
-        UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform, true);
+        UpdateSingleWheel(frontRightWheelCollider, frontRightWheelTransform, Quaternion.identity);
+        UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform, Quaternion.Euler(0f, 180f, 0f));
+        UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform, Quaternion.identity);
+        UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform, Quaternion.Euler(0f, 180f, 0f));
     }
 
-    private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform, bool isLeftWheel)
+    private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform, Quaternion rotationOffset)
     {
         Vector3 pos;
         Quaternion rot;       
         wheelCollider.GetWorldPose(out pos, out rot);
-        if (isLeftWheel)
-        {
-            rot *= Quaternion.Euler(0f, 180f, 0f);
-        }
+        rot *= rotationOffset;
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
     }
