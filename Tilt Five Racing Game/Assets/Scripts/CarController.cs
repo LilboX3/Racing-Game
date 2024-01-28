@@ -31,10 +31,10 @@ public class CarController : MonoBehaviour
     [SerializeField] private Vector3 centerOfMassOffset = new Vector3(0f, -1f, 0f);
 
     [Header("Wheel Colliders")]
-    [SerializeField] private WheelCollider frontRightWheelCollider;
-    [SerializeField] private WheelCollider frontLeftWheelCollider;
-    [SerializeField] private WheelCollider rearRightWheelCollider;
-    [SerializeField] private WheelCollider rearLeftWheelCollider;
+    [SerializeField] public WheelCollider frontRightWheelCollider;
+    [SerializeField] public WheelCollider frontLeftWheelCollider;
+    [SerializeField] public WheelCollider rearRightWheelCollider;
+    [SerializeField] public WheelCollider rearLeftWheelCollider;
     
     [Header("Wheel Transforms")]
     [SerializeField] private Transform frontRightWheelTransform;
