@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScene.unity
     guid: 1ce01647063588943803d5197d24bde7
   - enabled: 1
-    path: Assets/Scenes/Bigger Level.unity
+    path: Assets/Scenes/Aline's Workshop/Bigger Level.unity
     guid: d9acab02fb3330248820f6e93dd42bef
   - enabled: 0
-    path: Assets/Scenes/SampleLevel.unity
+    path: Assets/Scenes/Aline's Workshop/SampleLevel.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Race_Track_0.unity
+    guid: 2d6744053c66c294d896538d5116ee9a
   m_configObjects: {}
