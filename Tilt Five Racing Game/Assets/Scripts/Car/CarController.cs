@@ -46,6 +46,12 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform steeringWheelTransform;
     private Quaternion initialSteeringWheelRotation;
 
+    //[Header("Car Lights and Emissions Script")]
+    //[SerializeField] private CarLights carLights;
+    //carLights.Car_Not_Running();
+    //carLights.Car_Running();
+    //carLights.Car_Breaking();
+
     private void Start()
     {
         // adjusting the center of mass of the car.

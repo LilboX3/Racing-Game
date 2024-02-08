@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &610478224885536757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3223721343387677675}
+  - component: {fileID: 1807208824688723057}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3223721343387677675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610478224885536757}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -80.59557, y: 1.5399795, z: -111.57743}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1807208824688723057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610478224885536757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f8e86a2aff39c4b8f73fd19e2e3ee1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingScreenBGM: []
+  mainMenuBGM: []
+  workshopBGM: []
+  raceBGM:
+  - {fileID: 8300000, guid: 448315724fc89254b81e14cbccb8a4b6, type: 3}
+  masterGroup: {fileID: 24300002, guid: 2545ae385df186b41b477f281fa1c675, type: 2}
+  sfxGroup: {fileID: -9214087375580414439, guid: 2545ae385df186b41b477f281fa1c675, type: 2}
+  sceneGroup: {fileID: -5600431654000355148, guid: 2545ae385df186b41b477f281fa1c675, type: 2}
+  ambientGroup: {fileID: -2862164846819717147, guid: 2545ae385df186b41b477f281fa1c675, type: 2}
+  menuGroup: {fileID: -2426904187592730885, guid: 2545ae385df186b41b477f281fa1c675, type: 2}
+  bgmGroup: {fileID: 6578337050003294551, guid: 2545ae385df186b41b477f281fa1c675, type: 2}
+  fadeInDuration: 2
+  fadeOutDuration: 2
+  transitionDuration: 0
+  isTransitioningFollowupSong: 0
