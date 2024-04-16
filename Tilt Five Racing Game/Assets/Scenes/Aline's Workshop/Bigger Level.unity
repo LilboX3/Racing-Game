@@ -67,9 +67,6 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 1
@@ -277,11 +274,11 @@ PrefabInstance:
     m_TransformParent: {fileID: 234643431}
     m_Modifications:
     - target: {fileID: 7927402271579054566, guid: a499edd03c66b01448a097101fe82b7a, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0771555f3d9d74449a3fda8c6f725ad0, type: 2}
     - target: {fileID: 7927402271579054566, guid: a499edd03c66b01448a097101fe82b7a, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 0771555f3d9d74449a3fda8c6f725ad0, type: 2}
     - target: {fileID: 8431642495673663539, guid: a499edd03c66b01448a097101fe82b7a, type: 3}
@@ -2781,11 +2778,11 @@ PrefabInstance:
       value: SM_Prop_Sofa_03_Corner_01 (3)
       objectReference: {fileID: 0}
     - target: {fileID: 5959681400231796863, guid: 98c4915b41cb02d49b5d3696ccbec403, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0771555f3d9d74449a3fda8c6f725ad0, type: 2}
     - target: {fileID: 5959681400231796863, guid: 98c4915b41cb02d49b5d3696ccbec403, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 0771555f3d9d74449a3fda8c6f725ad0, type: 2}
     m_RemovedComponents: []
@@ -5094,6 +5091,7 @@ GameObject:
   m_Component:
   - component: {fileID: 555655732}
   - component: {fileID: 555655731}
+  - component: {fileID: 555655733}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -5178,6 +5176,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &555655733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555655730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1 &558858168
 GameObject:
   m_ObjectHideFlags: 0
@@ -6560,11 +6581,11 @@ PrefabInstance:
       value: SM_Prop_Sofa_03_Corner_01 (2)
       objectReference: {fileID: 0}
     - target: {fileID: 5959681400231796863, guid: 98c4915b41cb02d49b5d3696ccbec403, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0771555f3d9d74449a3fda8c6f725ad0, type: 2}
     - target: {fileID: 5959681400231796863, guid: 98c4915b41cb02d49b5d3696ccbec403, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 0771555f3d9d74449a3fda8c6f725ad0, type: 2}
     m_RemovedComponents: []
@@ -6729,11 +6750,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2073396600284170518, guid: 45fb1afc6f2eefd438d457e0e2040c5c, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0771555f3d9d74449a3fda8c6f725ad0, type: 2}
     - target: {fileID: 2073396600284170518, guid: 45fb1afc6f2eefd438d457e0e2040c5c, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 0771555f3d9d74449a3fda8c6f725ad0, type: 2}
     m_RemovedComponents: []
@@ -11493,11 +11514,11 @@ PrefabInstance:
     m_TransformParent: {fileID: 234643431}
     m_Modifications:
     - target: {fileID: 7927402271579054566, guid: a499edd03c66b01448a097101fe82b7a, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0771555f3d9d74449a3fda8c6f725ad0, type: 2}
     - target: {fileID: 7927402271579054566, guid: a499edd03c66b01448a097101fe82b7a, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 0771555f3d9d74449a3fda8c6f725ad0, type: 2}
     - target: {fileID: 8431642495673663539, guid: a499edd03c66b01448a097101fe82b7a, type: 3}
@@ -12375,11 +12396,11 @@ PrefabInstance:
       value: SM_Prop_Sofa_03_Corner_01 (4)
       objectReference: {fileID: 0}
     - target: {fileID: 5959681400231796863, guid: 98c4915b41cb02d49b5d3696ccbec403, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0771555f3d9d74449a3fda8c6f725ad0, type: 2}
     - target: {fileID: 5959681400231796863, guid: 98c4915b41cb02d49b5d3696ccbec403, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 0771555f3d9d74449a3fda8c6f725ad0, type: 2}
     m_RemovedComponents: []
@@ -12598,7 +12619,7 @@ PrefabInstance:
     m_TransformParent: {fileID: 234643431}
     m_Modifications:
     - target: {fileID: 2406800217846514099, guid: d056e104779fb054d987c3b3ee45f9fd, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 3e48951d09250aa4fba336be3d3989c5, type: 2}
     - target: {fileID: 3543630144630225628, guid: d056e104779fb054d987c3b3ee45f9fd, type: 3}
@@ -12857,11 +12878,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2073396600284170518, guid: 45fb1afc6f2eefd438d457e0e2040c5c, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0771555f3d9d74449a3fda8c6f725ad0, type: 2}
     - target: {fileID: 2073396600284170518, guid: 45fb1afc6f2eefd438d457e0e2040c5c, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 0771555f3d9d74449a3fda8c6f725ad0, type: 2}
     m_RemovedComponents: []
@@ -13021,11 +13042,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2073396600284170518, guid: 45fb1afc6f2eefd438d457e0e2040c5c, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0771555f3d9d74449a3fda8c6f725ad0, type: 2}
     - target: {fileID: 2073396600284170518, guid: 45fb1afc6f2eefd438d457e0e2040c5c, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 0771555f3d9d74449a3fda8c6f725ad0, type: 2}
     m_RemovedComponents: []
@@ -13934,11 +13955,11 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2073396600284170518, guid: 45fb1afc6f2eefd438d457e0e2040c5c, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0771555f3d9d74449a3fda8c6f725ad0, type: 2}
     - target: {fileID: 2073396600284170518, guid: 45fb1afc6f2eefd438d457e0e2040c5c, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 0771555f3d9d74449a3fda8c6f725ad0, type: 2}
     m_RemovedComponents: []
@@ -16050,7 +16071,7 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 23128365058219082, guid: 4f1da6d1922b35941b59b749ddcd6eaf, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 27a84a235e7a6f14d84f32b2f40bcd7c, type: 2}
     m_RemovedComponents: []
@@ -16736,14 +16757,17 @@ MonoBehaviour:
   motorForce: 1000
   breakForce: 3000
   maxSteerAngle: 30
-  frontLeftWheelCollider: {fileID: 2129768656}
+  maxSteeringWheelRotation: 135
+  centerOfMassOffset: {x: 0, y: -1, z: 0}
   frontRightWheelCollider: {fileID: 4326995}
-  rearLeftWheelCollider: {fileID: 811074829}
+  frontLeftWheelCollider: {fileID: 2129768656}
   rearRightWheelCollider: {fileID: 1781536076}
-  frontLeftWheelTransform: {fileID: 253651049}
+  rearLeftWheelCollider: {fileID: 811074829}
   frontRightWheelTransform: {fileID: 1986684607}
-  rearLeftWheelTransform: {fileID: 410754432}
+  frontLeftWheelTransform: {fileID: 253651049}
   rearRightWheelTransform: {fileID: 124060693}
+  rearLeftWheelTransform: {fileID: 410754432}
+  steeringWheelTransform: {fileID: 1260503776}
 --- !u!65 &1986785791
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17167,7 +17191,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6396479412095814729, guid: eff7ed7585938ce4fb2c2db921ff058d, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 9e690eb6a301a204b8ede19ba8611297, type: 2}
     m_RemovedComponents: []
@@ -17784,11 +17808,11 @@ PrefabInstance:
       value: SM_Prop_Sofa_03_Corner_01 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 5959681400231796863, guid: 98c4915b41cb02d49b5d3696ccbec403, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0771555f3d9d74449a3fda8c6f725ad0, type: 2}
     - target: {fileID: 5959681400231796863, guid: 98c4915b41cb02d49b5d3696ccbec403, type: 3}
-      propertyPath: m_Materials.Array.data[1]
+      propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 0771555f3d9d74449a3fda8c6f725ad0, type: 2}
     m_RemovedComponents: []
@@ -21025,7 +21049,7 @@ MeshRenderer:
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!95 &95135901617439717
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -21039,6 +21063,7 @@ Animator:
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1

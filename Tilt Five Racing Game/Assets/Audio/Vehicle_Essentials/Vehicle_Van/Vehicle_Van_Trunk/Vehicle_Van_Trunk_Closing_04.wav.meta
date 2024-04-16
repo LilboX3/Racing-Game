@@ -20,3 +20,10 @@ AudioImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194951
+  packageName: Vehicle - Essentials
+  packageVersion: 1.0
+  assetPath: Assets/Audio/Vehicle_Essentials/Vehicle_Van/Vehicle_Van_Trunk/Vehicle_Van_Trunk_Closing_04.wav
+  uploadId: 432224
