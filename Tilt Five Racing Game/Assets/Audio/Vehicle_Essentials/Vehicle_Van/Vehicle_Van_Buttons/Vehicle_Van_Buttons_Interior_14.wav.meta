@@ -20,3 +20,10 @@ AudioImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194951
+  packageName: Vehicle - Essentials
+  packageVersion: 1.0
+  assetPath: Assets/Audio/Vehicle_Essentials/Vehicle_Van/Vehicle_Van_Buttons/Vehicle_Van_Buttons_Interior_14.wav
+  uploadId: 432224

@@ -20,3 +20,10 @@ AudioImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194951
+  packageName: Vehicle - Essentials
+  packageVersion: 1.0
+  assetPath: Assets/Audio/Vehicle_Essentials/Vehicle_Car/Vehicle_Car_Glove_Box/Vehicle_Car_GloveBox_Interior_01.wav
+  uploadId: 432224

@@ -20,3 +20,10 @@ AudioImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 194951
+  packageName: Vehicle - Essentials
+  packageVersion: 1.0
+  assetPath: Assets/Audio/Vehicle_Essentials/Vehicle_Car/Vehicle_Car_Doors/Vehicle_Car_Door_Opening_Exterior_03.wav
+  uploadId: 432224
