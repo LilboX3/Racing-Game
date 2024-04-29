@@ -55,7 +55,7 @@ public class CarController : MonoBehaviour
     private void Start()
     {
         // adjusting the center of mass of the car.
-        // lower to prevent flipping.
+        // lower to prevent flipping.s
         // might cause swinging like a pendulum.
         gameObject.GetComponent<Rigidbody>().centerOfMass += centerOfMassOffset;
 
