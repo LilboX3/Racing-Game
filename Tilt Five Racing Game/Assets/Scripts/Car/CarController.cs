@@ -77,6 +77,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private float brakeForce;
     private float currentbrakeForce;
     private bool isBreaking;
+    private bool isHandBraking;
 
     [Header("Steering")]
     [SerializeField] private float maxSteerAngle;
@@ -91,6 +92,7 @@ public class CarController : MonoBehaviour
     public WheelFrictionCurve forwardFriction;
     public WheelFrictionCurve sidewaysFriction;
     public float handBrakeFrictionMultiplier = 2f;
+    [SerializeField] private float DownForceValue = 10f;
 
     [Header("Speed Boost Settings")]
     public float speedBoostForceMultiplier = 1.5f;
@@ -241,7 +243,7 @@ public class CarController : MonoBehaviour
             frontRightWheelCollider.steerAngle = 0;
         }
     }
-    private IEnumerator timedLoop()
+    private IEnumerator TimedLoop()
     {
         while (true)
         {
@@ -371,9 +373,9 @@ public class CarController : MonoBehaviour
     }
     private void UpdateGearShift()  
     {
-        if (!IsGrounded())
+        if (!IsGroundedForShift())
         {
-            return;// ~ WIP ~
+            return;
         }
         //automatic
         if (currentEngineRPM > maxRPM && currentGear < gearRatios.Length - 1 && !reverse && CheckGearShiftSpeed())
@@ -387,9 +389,8 @@ public class CarController : MonoBehaviour
             // if (gameObject.tag != "AI") manager.changeGear();    // TODO: AI
         }
     }
-    private bool IsGrounded()
-    {   
-        // should change this or expand it
+    private bool IsGroundedForShift()
+    {
         return wheelColliders[0].isGrounded && wheelColliders[1].isGrounded && wheelColliders[2].isGrounded && wheelColliders[3].isGrounded;
     }
     private bool CheckGearShiftSpeed()
@@ -397,8 +398,49 @@ public class CarController : MonoBehaviour
         return KPH >= gearChangeSpeed[currentGear];
     }
     // ----- Friction Calculations
+    /*
+    private void AddDownForce()
+    {
+        carRigidbody.AddForce(-transform.up * downForceValue * carRigidbody.velocity.magnitude);
+    }
+    private void AdjustTraction()   // ~ WIP ~
+    {
+        float driftSmoothFactor = 0.7f * Time.deltaTime; // Smooth factor for time it takes to transition to drift
 
+        if (isHandBraking)
+        {
+            float velocity = 0f;
+            for (int i = 0; i < wheelColliders.Length; i++)
+            {
+                sidewaysFriction = wheelColliders[i].sidewaysFriction;
+                forwardFriction = wheelColliders[i].forwardFriction;
 
+                float targetFrictionValue = driftFactor * handBrakeFrictionMultiplier;
+                sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue =
+                    forwardFriction.extremumValue = forwardFriction.asymptoteValue =
+                    Mathf.SmoothDamp(forwardFriction.asymptoteValue, targetFrictionValue, ref velocity, driftSmoothFactor);
+
+                wheelColliders[i].sidewaysFriction = sidewaysFriction;
+                wheelColliders[i].forwardFriction = forwardFriction;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < wheelColliders.Length; i++)
+            {
+                sidewaysFriction = wheelColliders[i].sidewaysFriction;
+                forwardFriction = wheelColliders[i].forwardFriction;
+
+                float normalFrictionValue = (KPH * handBrakeFrictionMultiplier) / 300 + 1;
+                sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue =
+                    forwardFriction.extremumValue = forwardFriction.asymptoteValue = normalFrictionValue;
+
+                wheelColliders[i].sidewaysFriction = sidewaysFriction;
+                wheelColliders[i].forwardFriction = forwardFriction;
+            }
+        }
+    }
+    */
     // ----- Speed Boost
 
 
