@@ -4186,11 +4186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b73127b140ea04481f97dc56162733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  motorForce: 2000
-  breakForce: 2500
-  maxSteerAngle: 30
-  maxSteeringWheelRotation: 135
-  centerOfMassOffset: {x: 0, y: -1, z: 0}
   frontRightWheelCollider: {fileID: 2474648786783175112}
   frontLeftWheelCollider: {fileID: 472808553849743379}
   rearRightWheelCollider: {fileID: 841121715845087154}
@@ -4199,7 +4194,73 @@ MonoBehaviour:
   frontLeftWheelTransform: {fileID: 1735389179473464866}
   rearRightWheelTransform: {fileID: 5677515169184026163}
   rearLeftWheelTransform: {fileID: 1733266774496151823}
+  driveType: 1
+  motorForce: 2000
+  maxRPM: 8000
+  minRPM: 5000
+  enginePowerCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 4.3402834
+      value: 406.34308
+      inSlope: 0.111855164
+      outSlope: 0.111855164
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.112477586
+    - serializedVersion: 3
+      time: 7903.82
+      value: 776.99
+      inSlope: -0.005127997
+      outSlope: -0.005127997
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.0882489
+      outWeight: 0.550979
+    - serializedVersion: 3
+      time: 9529.063
+      value: 564.7064
+      inSlope: -0.25033534
+      outSlope: -0.25033534
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.2511919
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  gearRatios:
+  - 4
+  - 2.8
+  - 2.2
+  - 1.6
+  - 1.1
+  - 0.7
+  gearChangeSpeed:
+  - 60
+  - 100
+  - 130
+  - 170
+  - 200
+  - 250
+  brakeForce: 0
+  maxSteerAngle: 30
   steeringWheelTransform: {fileID: 956205556720843391}
+  maxSteeringWheelRotation: 135
+  handBrakeFrictionMultiplier: 2
+  speedBoostForceMultiplier: 1.5
+  speedBoostFrictionMultiplier: 1.5
+  speedBoostCharge: 100
+  speedBoostDepletionRate: 20
+  speedBoostRenerationRate: 6.25
+  currentGear: 1
+  KPH: 0
+  currentEngineRPM: 0
+  reverse: 0
+  isSpeedBoosting: 0
+  currentBoost: 0
 --- !u!114 &7795263453534769971
 MonoBehaviour:
   m_ObjectHideFlags: 0
