@@ -4116,6 +4116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8554190018125650978}
   - component: {fileID: 7693111920228139747}
+  - component: {fileID: 7603271326092925421}
   - component: {fileID: 6071673781552205508}
   - component: {fileID: 7795263453534769971}
   - component: {fileID: 6500629471886359359}
@@ -4175,6 +4176,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7603271326092925421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6340175005630962042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33dade1d3c086384499e8861f3f8d0da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vertical: 0
+  horizontal: 0
+  handbrake: 0
+  boosting: 0
+  isPlayerControlled: 1
 --- !u!114 &6071673781552205508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4250,7 +4268,11 @@ MonoBehaviour:
   maxSteerAngle: 30
   steeringWheelTransform: {fileID: 956205556720843391}
   maxSteeringWheelRotation: 135
-  handBrakeFrictionMultiplier: 2
+  forwardStiffness: 1
+  sidewaysStiffness: 1
+  handBrakeForwardStiffnessMultiplier: 0.55
+  handBrakeSidewaysStiffnessMultiplier: 0.55
+  downForceValue: 10
   speedBoostForceMultiplier: 1.5
   speedBoostFrictionMultiplier: 1.5
   speedBoostCharge: 100

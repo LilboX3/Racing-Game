@@ -6,6 +6,8 @@ using UnityEditor.Build.Content;
 #endif
 using UnityEngine;
 
+// Syntax Note: Functions with a line of space inbetween are unrelated, functions with no line of space inbetween are a set.
+
 public class CarController : MonoBehaviour
 {
     // =====*=====*=====*=====*==========[ Start of: ][ Data Types ]=====*=====*=====*=====*==========
@@ -16,12 +18,11 @@ public class CarController : MonoBehaviour
         FourWheelDrive
     }
     // =====*=====*=====*=====*==========[ End of:   ][ Data Types ]=====*=====*=====*=====*==========
-    // =====*=====*=====*=====*==========[ Start of: ][ Code helper ]=====*=====*=====*=====*==========
-    private const string HORIZONTAL = "Horizontal";
-    private const string VERTICAL = "Vertical";
-    // =====*=====*=====*=====*==========[ End of:   ][ Code Helper ]=====*=====*=====*=====*==========
     // =====*=====*=====*=====*==========[ Start of: ][ Variable Declarations ]=====*=====*=====*=====*==========
-    // ---------- References ----------
+    // ----------v---------- References ----------v----------
+    [Header("Input Manager Script")]
+    private InputManager inputManager;
+
     [Header("Wheel Colliders")]
     [SerializeField] public WheelCollider frontLeftWheelCollider;
     [SerializeField] public WheelCollider frontRightWheelCollider;
@@ -30,6 +31,7 @@ public class CarController : MonoBehaviour
     private WheelCollider[] wheelColliders = new WheelCollider[4];
     private WheelCollider[] torqueWheels; // wheels that motor torque is applied to (acceleration)
     private WheelCollider[] brakeWheels; // wheels that brake force is applied to (braking)
+    private WheelCollider[] handBrakeWheels; // wheels that handbrake is applied to (handbraking)
 
     /* WheelCollider.motorTorque:
      *      public float motorTorque;
@@ -49,10 +51,11 @@ public class CarController : MonoBehaviour
     [Header("Drive Setup")]
     [SerializeField] private DriveType driveType = DriveType.RearWheelDrive;
 
-    [Header("Input Axes")]
-    private float horizontalInput;
-    private float verticalInput;
-    private float currentSteerAngle;
+    [Header("Input Buttons and Axes")]
+    [HideInInspector] private float horizontalInput;
+    [HideInInspector] private float verticalInput;
+    [HideInInspector] private bool handbrakeInput = false;
+    [HideInInspector] private bool boostInput = false;
 
     //Lowered center of mass in rigidbody to prevent car from flipping
     //Might cause car to behave like a pendulum? see Start()
@@ -61,7 +64,7 @@ public class CarController : MonoBehaviour
     private Vector3 centerOfMassOffset;
 
     [Header("Motor")]
-    [SerializeField] private float motorForce;  // the power the motor applies to the wheels // to be deleted for newer calculation
+    //[SerializeField] private float motorForce;  // the power the motor applies to the wheels // to be deleted for newer calculation
     public float maxRPM, minRPM;    // used to determine when to shift gears
     private float wheelsRPM;
     [SerializeField] private AnimationCurve enginePowerCurve;
@@ -69,18 +72,20 @@ public class CarController : MonoBehaviour
     private float smoothTime = 0.09f;
 
     [Header("Gear")]
-    [SerializeField] public float[] gearRatios;
-    public float[] gearChangeSpeed; // used to stop gear shifting when midair
+    [SerializeField] public float[] gearRatios = { 4.0f, 2.8f, 2.2f, 1.6f, 1.1f, 0.7f };
+    [SerializeField] public float[] gearChangeSpeed = { 60, 100, 130, 170, 200, 250 }; // used to stop gear shifting when midair
     private bool isNearMaxRPM;
 
     [Header("Brake")]
-    [SerializeField] private float brakeForce;
+    [SerializeField] private float brakeForce = 5.0f;
     private float currentbrakeForce;
     private bool isBreaking;
     private bool isHandBraking;
 
     [Header("Steering")]
-    [SerializeField] private float maxSteerAngle;
+    private float currentSteerAngle;
+    [SerializeField] [Range(10, 80)] [Tooltip("The maximum rotation of the wheel along the steering axis when steering.")]
+    private float maxSteerAngle = 30;
     private float turningRadius = 6;
 
     [Header("Steering Wheel (Cockpit)")]
@@ -89,10 +94,23 @@ public class CarController : MonoBehaviour
     [SerializeField] private float maxSteeringWheelRotation = 135f;
 
     [Header ("Wheel Fiction Calculation")]
-    public WheelFrictionCurve forwardFriction;
-    public WheelFrictionCurve sidewaysFriction;
-    public float handBrakeFrictionMultiplier = 2f;
-    [SerializeField] private float DownForceValue = 10f;
+    [SerializeField] [Range(0.3f, 1.0f)] [Tooltip("Base stiffness for forward friction. Lower: Wheel slips forward/backward easier. Higher: Wheel sticks more to the ground, improving control.")]
+    private float forwardStiffness = 1.0f;
+    [SerializeField] [Range(0.3f, 1.0f)] [Tooltip("Base stiffness for sideways friction. Lower: Wheel slips sideways easier. Higher: Wheel sticks more to the ground, improving control.")]
+    private float sidewaysStiffness = 1.0f;
+    [SerializeField] [Range(0.3f, 0.8f)] [Tooltip("Forward friction when the handbrake is engaged. Lower: Wheel slips straight forward/backward easier. Higher: Wheel sticks more to the ground, improving control as if ABS was on.")]
+    private float handBrakeForwardStiffnessMultiplier = 0.55f;
+    [SerializeField] [Range(0.3f, 0.8f)] [Tooltip("Sideways friction when the handbrake is engaged. Lower: Wheel slips sideways easier. Higher: Wheel sticks more to the ground, improving control as if ABS was on.")]
+    private float handBrakeSidewaysStiffnessMultiplier = 0.55f;
+    private float handBrakeForwardStiffness; // In Start() pre-calculated forward stiffness for handbraking
+    private float handBrakeSidewaysStiffness; // In Start() pre-calculated sideways stiffness for handbraking
+    private WheelFrictionCurve normalForwardFriction;
+    private WheelFrictionCurve normalSidewaysFriction;
+    private WheelFrictionCurve handBrakeForwardFriction;
+    private WheelFrictionCurve handBrakeSidewaysFriction;
+
+    [SerializeField] [Range(5,20)] [Tooltip("The effectiveness of the car's spoiler.")]
+    private float downForceValue = 10f;
 
     [Header("Speed Boost Settings")]
     public float speedBoostForceMultiplier = 1.5f;
@@ -119,38 +137,41 @@ public class CarController : MonoBehaviour
 
     private void Start()
     {
-        // adjusting the center of mass of the car.
-        // lower to prevent flipping.s
-        // might cause swinging like a pendulum.
-        //gameObject.GetComponent<Rigidbody>().centerOfMass += centerOfMassOffset;
-        carRigidbody = gameObject.GetComponent<Rigidbody>();
-        changeCenterOfMass();
-
-        // Initialize the working wheel arrays for code streamlining
-        InitializeWheelConfiguration();
-
-        // Memorize default steering wheel position
-        initialSteeringWheelRotation = steeringWheelTransform.localRotation;
+        GetAllComponents(); // Find all required components
+        InitializeWheelConfiguration(); // Initialize the working wheel arrays for code streamlining
+        ChangeCenterOfMass(); // Manipulate the center of mass to make the car more stable
+        InitializeSteeringWheel(); // Prepare the car's steering wheel (in the cockpit)
     }
 
     private void FixedUpdate() 
     {
+        // old order:
+        /*
         GetInput();
         HandleMotor();
         HandleSteering();
         UpdateWheels();
         UpdateSteeringWheel();
+        */
+
+        GetInput(); // Process input every physics step
+        CalculateEnginePower(); // Manage the motor force application
+        SteerVehicle(); // Adjust steering based on inputs
+        AdjustTraction(); // NEW: Adjust traction dynamically based on current vehicle state
+        UpdateWheels(); // Update wheel positions and rotations
+        UpdateSteeringWheel(); // Adjust the visual steering wheel if applicable
+        AddDownForce(); // Apply downforce for aerodynamic effects
     }
 
     // =====*=====*=====*=====*==========[ End of:   ][ Unity Native Functions ]=====*=====*=====*=====*==========
     // =====*=====*=====*=====*==========[ Start of: ][ Old Functions ]=====*=====*=====*=====*==========
+    /*
     private void GetInput()
     {
         horizontalInput = Input.GetAxis(HORIZONTAL);
         verticalInput = Input.GetAxis(VERTICAL);
         isBreaking = Input.GetKey(KeyCode.Space);
     }
-
     private void HandleMotor()
     {
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
@@ -166,18 +187,159 @@ public class CarController : MonoBehaviour
         rearLeftWheelCollider.brakeTorque = currentbrakeForce;
         rearRightWheelCollider.brakeTorque = currentbrakeForce;
     }
-
     private void HandleSteering()
     {
         currentSteerAngle = maxSteerAngle * horizontalInput;
         frontLeftWheelCollider.steerAngle = currentSteerAngle;
         frontRightWheelCollider.steerAngle = currentSteerAngle;
     }
+    */
 
     // =====*=====*=====*=====*==========[ End of:   ][ Old Functions ]=====*=====*=====*=====*==========
+    // =====*=====*=====*=====*==========[ Start of: ][ Initializer Functions ]=====*=====*=====*=====*==========
+
+    private void GetAllComponents()
+    {
+        // Find the InputManager component on the GameObject
+        inputManager = GetComponent<InputManager>();
+        if (inputManager == null) // In case it's not on the same GameObject
+        {
+            Debug.LogError($"{gameObject.name}: CarController: InputManager component not found!");
+        }
+
+        // Find the Rigidbody component
+        carRigidbody = gameObject.GetComponent<Rigidbody>();
+        if(carRigidbody == null)
+        {
+            Debug.LogError($"{gameObject.name}: CarController: Rigidbody component not found!");
+        }
+    }
+
+    private void InitializeWheelConfiguration()
+    {
+        // Initialize wheel colliders
+        wheelColliders[0] = frontLeftWheelCollider;
+        wheelColliders[1] = frontRightWheelCollider;
+        wheelColliders[2] = rearLeftWheelCollider;
+        wheelColliders[3] = rearRightWheelCollider;
+
+        // Initialize wheel transforms
+        wheelTransforms[0] = frontLeftWheelTransform;
+        wheelTransforms[1] = frontRightWheelTransform;
+        wheelTransforms[2] = rearLeftWheelTransform;
+        wheelTransforms[3] = rearRightWheelTransform;
+
+        switch (driveType)
+        {
+            case DriveType.FourWheelDrive:
+                torqueWheels = wheelColliders; // All wheels receive torque
+                brakeWheels = wheelColliders;  // All wheels receive brake force
+                break;
+            case DriveType.RearWheelDrive:
+                torqueWheels = new WheelCollider[] { rearLeftWheelCollider, rearRightWheelCollider };
+                brakeWheels = wheelColliders; // Assuming all wheels should brake
+                break;
+            case DriveType.FrontWheelDrive:
+                torqueWheels = new WheelCollider[] { frontLeftWheelCollider, frontRightWheelCollider };
+                brakeWheels = wheelColliders; // Assuming all wheels should brake
+                break;
+        }
+
+        handBrakeWheels[0] = rearLeftWheelCollider;
+        handBrakeWheels[1] = rearRightWheelCollider;
+
+        // Initialize and pre-calculate values for wheel friction calculation
+        InitializeFrictionValues();
+
+        foreach (WheelCollider wheel in wheelColliders)
+        {
+            wheel.forwardFriction = normalForwardFriction;
+            wheel.sidewaysFriction = normalSidewaysFriction;
+        }
+    }
+    private void InitializeFrictionValues()
+    {
+        // Pre-calculate the stiffness values for handbraking at the start
+        handBrakeForwardStiffness = forwardStiffness * handBrakeForwardStiffnessMultiplier;
+        handBrakeSidewaysStiffness = sidewaysStiffness * handBrakeSidewaysStiffnessMultiplier;
+
+        // Initialize default friction curves
+        normalForwardFriction = new WheelFrictionCurve
+        {
+            extremumSlip = 0.4f,
+            extremumValue = 1f,
+            asymptoteSlip = 0.8f,
+            asymptoteValue = 0.5f,
+            stiffness = forwardStiffness
+        };
+        normalSidewaysFriction = new WheelFrictionCurve
+        {
+            extremumSlip = 0.2f,
+            extremumValue = 1f,
+            asymptoteSlip = 0.5f,
+            asymptoteValue = 0.75f,
+            stiffness = sidewaysStiffness
+        };
+
+        // Handbraking conditions
+        handBrakeForwardFriction = new WheelFrictionCurve
+        {
+            extremumSlip = normalForwardFriction.extremumSlip,
+            extremumValue = normalForwardFriction.extremumValue,
+            asymptoteSlip = normalForwardFriction.asymptoteSlip,
+            asymptoteValue = normalForwardFriction.asymptoteValue,
+            stiffness = forwardStiffness * handBrakeForwardStiffnessMultiplier
+        };
+        handBrakeSidewaysFriction = new WheelFrictionCurve
+        {
+            extremumSlip = normalSidewaysFriction.extremumSlip,
+            extremumValue = normalSidewaysFriction.extremumValue,
+            asymptoteSlip = normalSidewaysFriction.asymptoteSlip,
+            asymptoteValue = normalSidewaysFriction.asymptoteValue,
+            stiffness = sidewaysStiffness * handBrakeSidewaysStiffnessMultiplier
+        };
+    }
+
+    // ----- Center of Mass adjustment
+    // puts the center of mass at the height of the wheels
+    private void ChangeCenterOfMass()
+    {
+        // adjusting the center of mass of the car.
+        // lower to prevent flipping.s
+        // might cause swinging like a pendulum.
+
+        // old version:
+        //gameObject.GetComponent<Rigidbody>().centerOfMass += centerOfMassOffset; // this offset was -1 on y-axis (vertical). but this could put the center of mass below the vehicle, which causes the mentioned pendulum swinging and my have further weird side-effects.
+
+        float yMean = (frontLeftWheelTransform.position.y + frontRightWheelTransform.position.y + rearLeftWheelTransform.position.y + rearRightWheelTransform.position.y) / 4;
+        float yOffset = yMean - carRigidbody.centerOfMass.y;
+        centerOfMassOffset = new Vector3(0f, yOffset, 0f);
+        carRigidbody.centerOfMass += centerOfMassOffset;
+    }
+
+    private void InitializeSteeringWheel()
+    {
+        // Memorize default steering wheel position
+        initialSteeringWheelRotation = steeringWheelTransform.localRotation;
+    }
+
+    // =====*=====*=====*=====*==========[ End of:   ][ Initializer Functions ]=====*=====*=====*=====*==========
     // =====*=====*=====*=====*==========[ Start of: ][ Core Functions ]=====*=====*=====*=====*==========
 
+    private void GetInput()
+    {
+        // Get raw input from Input Manager
+        verticalInput = inputManager.vertical;
+        horizontalInput = inputManager.horizontal;
+        handbrakeInput = inputManager.handbrake;
+        boostInput = inputManager.boosting;
 
+        // Extrapolate raw input
+        // This is to allow for treating the variables differently in the logic, because the input doesn't necessarily reflect what the vehicle actually CAN do. e.g.: handbrake in mid-air
+        // For now steering and acceleration/deceleration is treated within the functions.
+        isHandBraking = handbrakeInput;
+        isSpeedBoosting = boostInput;
+    }
 
     private void UpdateWheels()
     {
@@ -209,31 +371,21 @@ public class CarController : MonoBehaviour
     // =====*=====*=====*=====*==========[ End of:   ][ Core Functions ]=====*=====*=====*=====*==========
     // =====*=====*=====*=====*==========[ Start of: ][ Private Functions ]=====*=====*=====*=====*==========
 
-    // ----- Center of Mass adjustment
-    // puts the center of mass at the height of the wheels
-    private void changeCenterOfMass()
-    {
-        float yMean = (frontLeftWheelTransform.position.y + frontRightWheelTransform.position.y + rearLeftWheelTransform.position.y + rearRightWheelTransform.position.y) / 4;
-        float yOffset = yMean - carRigidbody.centerOfMass.y;
-        centerOfMassOffset = new Vector3(0f, yOffset, 0f);
-        carRigidbody.centerOfMass += centerOfMassOffset;
-    }
-
     // ----- Ackerman Steering
-    private void steerVehicle()
+    private void SteerVehicle()
     {
-        // Ackermann steering formula:
+        // Ackermann steering formula:,
         // steerAngle = Mathf.Rad2Deg * Mathf.Atan(2.55f / (radius + (1.5f / 2))) * horizontalInput;
         if (horizontalInput > 0)
         {
             //rear tracks size is set to 1.5f       wheel base has been set to 2.55f
-            frontLeftWheelCollider.steerAngle = Mathf.Rad2Deg * Mathf.Atan(2.55f / (turningRadius + (1.5f / 2))) * horizontalInput; //left
             frontRightWheelCollider.steerAngle = Mathf.Rad2Deg * Mathf.Atan(2.55f / (turningRadius - (1.5f / 2))) * horizontalInput; //right
+            frontLeftWheelCollider.steerAngle = Mathf.Rad2Deg * Mathf.Atan(2.55f / (turningRadius + (1.5f / 2))) * horizontalInput; //left
         }
         else if (horizontalInput < 0)
         {
-            frontLeftWheelCollider.steerAngle = Mathf.Rad2Deg * Mathf.Atan(2.55f / (turningRadius - (1.5f / 2))) * horizontalInput;//left
             frontRightWheelCollider.steerAngle = Mathf.Rad2Deg * Mathf.Atan(2.55f / (turningRadius + (1.5f / 2))) * horizontalInput;//right
+            frontLeftWheelCollider.steerAngle = Mathf.Rad2Deg * Mathf.Atan(2.55f / (turningRadius - (1.5f / 2))) * horizontalInput;//left
             //transform.Rotate(Vector3.up * steerHelping);
 
         }
@@ -252,51 +404,6 @@ public class CarController : MonoBehaviour
 
         }
     }
-
-
-
-    // =====*=====*=====*=====*==========[ End of:   ][ Private Functions ]=====*=====*=====*=====*==========
-    // =====*=====*=====*=====*==========[ Start of: ][ Support Functions ]=====*=====*=====*=====*==========
-
-    private void InitializeWheelConfiguration()
-    {
-        // Initialize wheel colliders
-        wheelColliders[0] = frontLeftWheelCollider;
-        wheelColliders[1] = frontRightWheelCollider;
-        wheelColliders[2] = rearLeftWheelCollider;
-        wheelColliders[3] = rearRightWheelCollider;
-
-        // Initialize wheel transforms
-        wheelTransforms[0] = frontLeftWheelTransform;
-        wheelTransforms[1] = frontRightWheelTransform;
-        wheelTransforms[2] = rearLeftWheelTransform;
-        wheelTransforms[3] = rearRightWheelTransform;
-
-        switch (driveType)
-        {
-            case DriveType.FourWheelDrive:
-                torqueWheels = wheelColliders; // All wheels receive torque
-                brakeWheels = wheelColliders;  // All wheels receive brake force
-                break;
-            case DriveType.RearWheelDrive:
-                torqueWheels = new WheelCollider[] { rearLeftWheelCollider, rearRightWheelCollider };
-                brakeWheels = wheelColliders; // Assuming all wheels should brake
-                break;
-            case DriveType.FrontWheelDrive:
-                torqueWheels = new WheelCollider[] { frontLeftWheelCollider, frontRightWheelCollider };
-                brakeWheels = wheelColliders; // Assuming all wheels should brake
-                break;
-        }
-    }
-
-    // =====*=====*=====*=====*==========[ End of:   ][ Support Functions ]=====*=====*=====*=====*==========
-    // =====*=====*=====*=====*==========[ Start of: ][ Public Functions ]=====*=====*=====*=====*==========
-
-
-
-    // =====*=====*=====*=====*==========[ End of:   ][ Public Functions ]=====*=====*=====*=====*==========
-    // =====*=====*=====*=====*==========[ Start of: ][ WIP Functions ]=====*=====*=====*=====*==========
-
 
     // ----- Engine Power/RPM calculations
     private void CalculateEnginePower()
@@ -398,50 +505,56 @@ public class CarController : MonoBehaviour
         return KPH >= gearChangeSpeed[currentGear];
     }
     // ----- Friction Calculations
-    /*
+    
+    private void AdjustTraction()
+    {
+        WheelHit hit;
+        float sumSidewaysSlip = 0;
+        float[] sidewaysSlip = new float[wheelColliders.Length];
+
+        for (int i = 0; i < wheelColliders.Length; i++)
+        {
+            if (wheelColliders[i].GetGroundHit(out hit) && i >= 2)
+            {
+                // Adjust friction based on handbraking
+                wheelColliders[i].forwardFriction = isHandBraking ? handBrakeForwardFriction : normalForwardFriction;
+                wheelColliders[i].sidewaysFriction = isHandBraking ? handBrakeSidewaysFriction : normalSidewaysFriction;
+
+                // Calculate slip sums only for the rear wheels
+                sumSidewaysSlip += Mathf.Abs(hit.sidewaysSlip);
+                sidewaysSlip[i] = Mathf.Abs(hit.sidewaysSlip);
+            }
+        }
+
+        // Adjust the turning radius based on average slip of the rear wheels
+        if (wheelColliders.Length > 2) // To avoid division by zero
+        {
+            float averageSidewaysSlip = sumSidewaysSlip / 2; // Assuming the rear wheels are at indices 2 and 3
+            turningRadius = (KPH > 60) ? 4 + (averageSidewaysSlip * -25) + KPH / 8 : 4;
+        }
+    }
+
+    // Add aerodynamic down force caused by the car's spoiler. This presses the vehicle on the ground depending how good the car's spoiler is at its job (downForceValue).
     private void AddDownForce()
     {
-        carRigidbody.AddForce(-transform.up * downForceValue * carRigidbody.velocity.magnitude);
+        carRigidbody.AddForce(-transform.up * Mathf.Abs(downForceValue * carRigidbody.velocity.magnitude));
+
+        /*  more realistic, exponential curve - not tested and harder to calculate:
+            Velocity Squared: The function uses Mathf.Pow(rigidbody.velocity.magnitude, 2), which calculates the square of the velocity. This better mimics the actual quadratic relationship between velocity and aerodynamic forces like downforce.
+            Scaling Factor: The / 1000.0f is a scaling factor to keep the downforce values within a reasonable range for the game physics engine. This factor may need to be adjusted based on the specific game's speed units and how the physics are supposed to feel. It's important that this scaling factor is tuned to prevent excessive or insufficient downforce.
+        */
+        //carRigidbody.AddForce(-transform.up * Mathf.Abs(DownForceValue * Mathf.Pow(rigidbody.velocity.magnitude, 2) / 1000.0f));
+
     }
-    private void AdjustTraction()   // ~ WIP ~
-    {
-        float driftSmoothFactor = 0.7f * Time.deltaTime; // Smooth factor for time it takes to transition to drift
 
-        if (isHandBraking)
-        {
-            float velocity = 0f;
-            for (int i = 0; i < wheelColliders.Length; i++)
-            {
-                sidewaysFriction = wheelColliders[i].sidewaysFriction;
-                forwardFriction = wheelColliders[i].forwardFriction;
-
-                float targetFrictionValue = driftFactor * handBrakeFrictionMultiplier;
-                sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue =
-                    forwardFriction.extremumValue = forwardFriction.asymptoteValue =
-                    Mathf.SmoothDamp(forwardFriction.asymptoteValue, targetFrictionValue, ref velocity, driftSmoothFactor);
-
-                wheelColliders[i].sidewaysFriction = sidewaysFriction;
-                wheelColliders[i].forwardFriction = forwardFriction;
-            }
-        }
-        else
-        {
-            for (int i = 0; i < wheelColliders.Length; i++)
-            {
-                sidewaysFriction = wheelColliders[i].sidewaysFriction;
-                forwardFriction = wheelColliders[i].forwardFriction;
-
-                float normalFrictionValue = (KPH * handBrakeFrictionMultiplier) / 300 + 1;
-                sidewaysFriction.extremumValue = sidewaysFriction.asymptoteValue =
-                    forwardFriction.extremumValue = forwardFriction.asymptoteValue = normalFrictionValue;
-
-                wheelColliders[i].sidewaysFriction = sidewaysFriction;
-                wheelColliders[i].forwardFriction = forwardFriction;
-            }
-        }
-    }
-    */
     // ----- Speed Boost
 
 
+
+    // =====*=====*=====*=====*==========[ End of:   ][ Private Functions ]=====*=====*=====*=====*==========
+    // =====*=====*=====*=====*==========[ Start of: ][ Public Functions ]=====*=====*=====*=====*==========
+
+    // nobody here but us chickens
+
+    // =====*=====*=====*=====*==========[ End of:   ][ Public Functions ]=====*=====*=====*=====*==========
 }
