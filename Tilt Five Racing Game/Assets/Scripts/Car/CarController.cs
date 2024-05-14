@@ -68,7 +68,8 @@ public class CarController : MonoBehaviour
     public float maxRPM, minRPM;    // used to determine when to shift gears
     private float wheelsRPM;
     [SerializeField] private AnimationCurve enginePowerCurve;
-    private float totalEnginePower;
+    private float totalEngineTorque;
+    private float torquePerWheel;
     private float smoothTime = 0.09f;
 
     [Header("Gear")]
@@ -81,6 +82,10 @@ public class CarController : MonoBehaviour
     private float currentbrakeForce;
     private bool isBreaking;
     private bool isHandBraking;
+    [SerializeField] [Range(0.0f, 20.0f)] [Tooltip("Threshhold below which the brake is automatically applied to stop the vehicle from continuously rolling.")]
+    private float brakeThreshhold = 5.0f;
+    [SerializeField] [Range(0.0f, 20.0f)] [Tooltip("Determines how much a vehicle decelerates when rolling without vertical input (gas pedal being pressed).")]
+    private float rollDecay = 5.0f;
 
     [Header("Steering")]
     private float currentSteerAngle;
@@ -155,7 +160,7 @@ public class CarController : MonoBehaviour
         */
 
         GetInput(); // Process input every physics step
-        CalculateEnginePower(); // Manage the motor force application
+        CalculateCarPhysics(); // Manage the motor force application
         SteerVehicle(); // Adjust steering based on inputs
         AdjustTraction(); // NEW: Adjust traction dynamically based on current vehicle state
         UpdateWheels(); // Update wheel positions and rotations
@@ -245,8 +250,7 @@ public class CarController : MonoBehaviour
                 break;
         }
 
-        handBrakeWheels[0] = rearLeftWheelCollider;
-        handBrakeWheels[1] = rearRightWheelCollider;
+        handBrakeWheels = new WheelCollider[] { rearLeftWheelCollider, rearRightWheelCollider };
 
         // Initialize and pre-calculate values for wheel friction calculation
         InitializeFrictionValues();
@@ -405,13 +409,18 @@ public class CarController : MonoBehaviour
         }
     }
 
-    // ----- Engine Power/RPM calculations
-    private void CalculateEnginePower()
+    // ----- Engine Power/RPM calculations + braking and actual movement
+    private void CalculateCarPhysics()
     {
         WheelRPM();
-
+        CalculateEnginePower();
+        MoveVehicle();
+        UpdateGearShift();
+    }
+    private void CalculateEnginePower()
+    {
         carRigidbody.drag = (verticalInput != 0) ? 0.005f : 0.1f; // car drags less forward/backward than sideways
-        totalEnginePower = 3.6f * enginePowerCurve.Evaluate(currentEngineRPM) * (verticalInput);
+        totalEngineTorque = 3.6f * enginePowerCurve.Evaluate(currentEngineRPM) * (verticalInput);
 
         float velocity = 0.0f;
         if (currentEngineRPM >= maxRPM || isNearMaxRPM)
@@ -425,8 +434,6 @@ public class CarController : MonoBehaviour
             isNearMaxRPM = false;
         }
         currentEngineRPM = Mathf.Clamp(currentEngineRPM, 0, maxRPM + 1000);
-        MoveVehicle();
-        UpdateGearShift();
     }
     private void WheelRPM() // ok, maybe remove last line
     {
@@ -443,40 +450,63 @@ public class CarController : MonoBehaviour
     }
     private void MoveVehicle()
     {
-        ApplyBraking();
-        // Apply torque to configured wheels
-        foreach (WheelCollider wheel in torqueWheels)
-        {
-            wheel.motorTorque = totalEnginePower / torqueWheels.Length;
-        }
+        ApplyTorque();
         // Apply braking force to configured wheels
         foreach (WheelCollider wheel in brakeWheels)
         {
             wheel.brakeTorque = currentbrakeForce;
         }
 
-        KPH = carRigidbody.velocity.magnitude * 3.6f;
+        ApplyBraking();
+        UpdateVehicleSpeed();
+    }
+    private void ApplyTorque()
+    {
+        torquePerWheel = totalEngineTorque / torqueWheels.Length;
+        // Apply calculated engine torque to the appropriate wheels based on drive type
+        foreach (WheelCollider wheel in torqueWheels)
+        {
+            wheel.motorTorque = torquePerWheel;
+        }
     }
     private void ApplyBraking()
     {
-
-        if (verticalInput < 0)
-        {
-            currentbrakeForce = (KPH >= 10) ? brakeForce : 0;
-        }
-        else if (verticalInput == 0 && (KPH <= 10 || KPH >= -10))
-        {
-            currentbrakeForce = 10;
-        }
-        else
-        {
-            currentbrakeForce = 0;
-        }
-
+        currentbrakeForce = CalculateBrakeForce();
+        
         foreach (WheelCollider wheel in wheelColliders) // new ... check if makes sense
         {
             wheel.brakeTorque = currentbrakeForce;
         }
+    }
+    private float CalculateBrakeForce()
+    {
+        if (Mathf.Abs(verticalInput) < 0.1f)
+        {
+            // if not pressing gas pedal, either brake at low speeds or slowly decelerate while rolling
+            return (KPH >= brakeThreshhold) ? brakeForce : rollDecay;
+        }
+        else if (verticalInput < 0)
+        {
+            if(KPH > 0)
+            {   
+                // brake if moving forward
+                return brakeForce;
+            }
+            else
+            {
+                // go backwards if standing still or already going backwards
+                // reverse = true;
+                return 0;
+            }
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    private void UpdateVehicleSpeed()
+    {
+        KPH = carRigidbody.velocity.magnitude * 3.6f;
     }
     private void UpdateGearShift()  
     {
