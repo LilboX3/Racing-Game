@@ -148,6 +148,7 @@ Transform:
   - {fileID: 7703839102631202008}
   - {fileID: 1839216698969162928}
   - {fileID: 3046295193333735879}
+  - {fileID: 5733354352380794850}
   m_Father: {fileID: 5754796421944381423}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &385298625598808671
@@ -4115,6 +4116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8554190018125650978}
   - component: {fileID: 7693111920228139747}
+  - component: {fileID: 7603271326092925421}
   - component: {fileID: 6071673781552205508}
   - component: {fileID: 7795263453534769971}
   - component: {fileID: 6500629471886359359}
@@ -4174,6 +4176,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7603271326092925421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6340175005630962042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33dade1d3c086384499e8861f3f8d0da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vertical: 0
+  horizontal: 0
+  handbrake: 0
+  boosting: 0
+  isPlayerControlled: 1
 --- !u!114 &6071673781552205508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4186,20 +4205,85 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b73127b140ea04481f97dc56162733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  motorForce: 2000
-  breakForce: 2500
-  maxSteerAngle: 30
-  maxSteeringWheelRotation: 135
-  centerOfMassOffset: {x: 0, y: -1, z: 0}
-  frontRightWheelCollider: {fileID: 2474648786783175112}
   frontLeftWheelCollider: {fileID: 472808553849743379}
-  rearRightWheelCollider: {fileID: 841121715845087154}
+  frontRightWheelCollider: {fileID: 2474648786783175112}
   rearLeftWheelCollider: {fileID: 2900056547861275985}
-  frontRightWheelTransform: {fileID: 6984856205779362338}
+  rearRightWheelCollider: {fileID: 841121715845087154}
   frontLeftWheelTransform: {fileID: 1735389179473464866}
-  rearRightWheelTransform: {fileID: 5677515169184026163}
+  frontRightWheelTransform: {fileID: 6984856205779362338}
   rearLeftWheelTransform: {fileID: 1733266774496151823}
+  rearRightWheelTransform: {fileID: 5677515169184026163}
+  driveType: 1
+  motorForce: 2000
+  maxRPM: 8000
+  minRPM: 5000
+  enginePowerCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 4.3402834
+      value: 406.34308
+      inSlope: 0.111855164
+      outSlope: 0.111855164
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.112477586
+    - serializedVersion: 3
+      time: 7903.82
+      value: 776.99
+      inSlope: -0.005127997
+      outSlope: -0.005127997
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.0882489
+      outWeight: 0.550979
+    - serializedVersion: 3
+      time: 9529.063
+      value: 564.7064
+      inSlope: -0.25033534
+      outSlope: -0.25033534
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.2511919
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  gearRatios:
+  - 4
+  - 2.8
+  - 2.2
+  - 1.6
+  - 1.1
+  - 0.7
+  gearChangeSpeed:
+  - 60
+  - 100
+  - 130
+  - 170
+  - 200
+  - 250
+  brakeForce: 0
+  maxSteerAngle: 30
   steeringWheelTransform: {fileID: 956205556720843391}
+  maxSteeringWheelRotation: 135
+  forwardStiffness: 1
+  sidewaysStiffness: 1
+  handBrakeForwardStiffnessMultiplier: 0.55
+  handBrakeSidewaysStiffnessMultiplier: 0.55
+  downForceValue: 10
+  speedBoostForceMultiplier: 1.5
+  speedBoostFrictionMultiplier: 1.5
+  speedBoostCharge: 100
+  speedBoostDepletionRate: 20
+  speedBoostRenerationRate: 6.25
+  currentGear: 1
+  KPH: 0
+  currentEngineRPM: 0
+  reverse: 0
+  isSpeedBoosting: 0
+  currentBoost: 0
 --- !u!114 &7795263453534769971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4253,6 +4337,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdcd77096924efc408666339c6e545c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leaderboard: {fileID: 0}
+  playerName: 
   laptime: 0
   timer: {fileID: 0}
 --- !u!114 &5804546852157532786
@@ -6333,3 +6419,81 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.285, y: 1.4, z: 5.5}
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!1001 &8415658511978968037
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3594076168367020964}
+    m_Modifications:
+    - target: {fileID: 4276902028776634407, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
+      propertyPath: m_Name
+      value: SpeedBoost_Exhaust_Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276902028777055239, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276902028777055239, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276902028777055239, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276902028777055239, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276902028777055239, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276902028777055239, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276902028777055239, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276902028777055239, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276902028777055239, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276902028777055239, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276902028777055239, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276902028777055239, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276902028777055239, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276902028777055239, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
+--- !u!4 &5733354352380794850 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4276902028777055239, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
+  m_PrefabInstance: {fileID: 8415658511978968037}
+  m_PrefabAsset: {fileID: 0}
