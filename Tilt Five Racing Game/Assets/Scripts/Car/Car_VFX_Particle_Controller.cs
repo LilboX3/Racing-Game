@@ -10,6 +10,8 @@ public class CarParticleController : MonoBehaviour
 
     [Header("Skid Marks / Tire Marks / Tire Trails")]
     [SerializeField] private GameObject tireMarkTrail;
+    [SerializeField] [Range(0.0f,1.0f)] [Tooltip("Small offset to ensure trails are just above the ground.")]private Vector3 trailOffset = Vector3.up * 0.05f;
+    private Quaternion trailRotation = Quaternion.Euler(90, 0, 0); // Rotating the trail to align with the ground.
 
     [Header("Tire Smoke Particles")]
     [SerializeField] private GameObject smokeParticles;
@@ -53,13 +55,13 @@ public class CarParticleController : MonoBehaviour
         }
         if (tireMarkTrail)
         {
-            wheelEmitters.FR_WheelTrail = Instantiate(tireMarkTrail, wheelColliders.FR_collider.transform.position - Vector3.up * wheelColliders.FR_collider.radius, Quaternion.identity, wheelColliders.FR_collider.transform)
+            wheelEmitters.FR_WheelTrail = Instantiate(tireMarkTrail, wheelColliders.FR_collider.transform.position - Vector3.up * wheelColliders.FR_collider.radius + trailOffset, trailRotation, wheelColliders.FR_collider.transform)
                 .GetComponent<TrailRenderer>();
-            wheelEmitters.FL_WheelTrail = Instantiate(tireMarkTrail, wheelColliders.FL_collider.transform.position - Vector3.up * wheelColliders.FL_collider.radius, Quaternion.identity, wheelColliders.FL_collider.transform)
+            wheelEmitters.FL_WheelTrail = Instantiate(tireMarkTrail, wheelColliders.FL_collider.transform.position - Vector3.up * wheelColliders.FL_collider.radius + trailOffset, trailRotation, wheelColliders.FL_collider.transform)
                 .GetComponent<TrailRenderer>();
-            wheelEmitters.RR_WheelTrail = Instantiate(tireMarkTrail, wheelColliders.RR_collider.transform.position - Vector3.up * wheelColliders.RR_collider.radius, Quaternion.identity, wheelColliders.RR_collider.transform)
+            wheelEmitters.RR_WheelTrail = Instantiate(tireMarkTrail, wheelColliders.RR_collider.transform.position - Vector3.up * wheelColliders.RR_collider.radius + trailOffset, trailRotation, wheelColliders.RR_collider.transform)
                 .GetComponent<TrailRenderer>();
-            wheelEmitters.RL_WheelTrail = Instantiate(tireMarkTrail, wheelColliders.RL_collider.transform.position - Vector3.up * wheelColliders.RL_collider.radius, Quaternion.identity, wheelColliders.RL_collider.transform)
+            wheelEmitters.RL_WheelTrail = Instantiate(tireMarkTrail, wheelColliders.RL_collider.transform.position - Vector3.up * wheelColliders.RL_collider.radius + trailOffset, trailRotation, wheelColliders.RL_collider.transform)
                 .GetComponent<TrailRenderer>();
         }
     }

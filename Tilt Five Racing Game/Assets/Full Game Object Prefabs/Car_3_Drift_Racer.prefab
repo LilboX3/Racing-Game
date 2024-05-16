@@ -4188,11 +4188,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33dade1d3c086384499e8861f3f8d0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerControlled: 1
   vertical: 0
   horizontal: 0
   handbrake: 0
   boosting: 0
-  isPlayerControlled: 1
 --- !u!114 &6071673781552205508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4214,7 +4214,6 @@ MonoBehaviour:
   rearLeftWheelTransform: {fileID: 1733266774496151823}
   rearRightWheelTransform: {fileID: 5677515169184026163}
   driveType: 1
-  motorForce: 2000
   maxRPM: 8000
   minRPM: 5000
   enginePowerCurve:
@@ -4264,7 +4263,9 @@ MonoBehaviour:
   - 170
   - 200
   - 250
-  brakeForce: 0
+  brakeForce: 25
+  brakeThreshhold: 5
+  rollDecay: 5
   maxSteerAngle: 30
   steeringWheelTransform: {fileID: 956205556720843391}
   maxSteeringWheelRotation: 135
