@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CarParticleController : MonoBehaviour
+public class CarVFXController : MonoBehaviour
 {
     [Header("Car Controller Script to access public data")]
     [SerializeField] private CarController carController;

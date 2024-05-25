@@ -4299,6 +4299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carController: {fileID: 6071673781552205508}
   tireMarkTrail: {fileID: 1185905972910018965, guid: 67f7afe6da362364ea3566b9888c94ff, type: 3}
+  trailOffset: {x: 0, y: 0.05, z: 0}
   smokeParticles: {fileID: 1169773065367822, guid: aba5b0bd0087f184ab6a63de0385aa51, type: 3}
   wheelEmitters:
     FR_WheelParticles: {fileID: 0}
@@ -4333,7 +4334,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6340175005630962042}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bdcd77096924efc408666339c6e545c7, type: 3}
   m_Name: 
@@ -6431,6 +6432,10 @@ PrefabInstance:
     - target: {fileID: 4276902028776634407, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
       propertyPath: m_Name
       value: SpeedBoost_Exhaust_Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276902028776634407, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4276902028777055239, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
       propertyPath: m_LocalScale.x
