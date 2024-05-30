@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class RacerScript : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class RacerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!startTimer && (Input.GetAxis("Vertical")!=0))
+        if(!startTimer && (Input.GetAxis("Vertical") !=0))
         {
             Debug.Log("Key pressed, starting timer now");
             startTimer = true;
