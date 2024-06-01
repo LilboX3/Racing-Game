@@ -6,9 +6,11 @@ public class TimeWeatherController : MonoBehaviour
 {
     public GameObject DayDome;
     public GameObject RainEffect;
+    public GameObject FogObject;
 
     public bool isDay;
     public bool isRaining;
+    public bool isFoggy;
 
     public PhysicMaterial slipperyMaterial;
     public PhysicMaterial defaultMaterial;
@@ -19,6 +21,7 @@ public class TimeWeatherController : MonoBehaviour
     {
         isDay = false;
         isRaining = true;
+        isFoggy = false;
     }
 
     // Update is called once per frame
@@ -29,6 +32,9 @@ public class TimeWeatherController : MonoBehaviour
 
         if (isRaining) SetRainEffect();
         else DisableRainEffect();
+
+        if (isFoggy) StartFog();
+        else StopFog();
     }
 
 
@@ -48,5 +54,17 @@ public class TimeWeatherController : MonoBehaviour
         {
             coll.material = defaultMaterial;
         }
+    }
+
+    private void StartFog()
+    {
+         ParticleSystem fogParticles = FogObject.GetComponent<ParticleSystem>();
+         fogParticles.Emit(1);
+    }
+
+    private void StopFog()
+    {
+        ParticleSystem fogParticles = FogObject.GetComponent<ParticleSystem>();
+        fogParticles.Clear();
     }
 }
