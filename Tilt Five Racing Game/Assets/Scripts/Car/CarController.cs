@@ -304,6 +304,56 @@ public class CarController : MonoBehaviour
         };
     }
 
+    public void ChangeToSlipperyFriction()
+    {
+        handBrakeForwardStiffnessMultiplier = 0.3f;
+        handBrakeSidewaysStiffnessMultiplier = 0.3f;
+
+        handBrakeForwardStiffness = forwardStiffness * handBrakeForwardStiffnessMultiplier;
+        handBrakeSidewaysStiffness = sidewaysStiffness * handBrakeSidewaysStiffnessMultiplier;
+        handBrakeForwardFriction = new WheelFrictionCurve
+        {
+            extremumSlip = normalForwardFriction.extremumSlip,
+            extremumValue = normalForwardFriction.extremumValue,
+            asymptoteSlip = normalForwardFriction.asymptoteSlip,
+            asymptoteValue = normalForwardFriction.asymptoteValue,
+            stiffness = forwardStiffness * handBrakeForwardStiffnessMultiplier
+        };
+        handBrakeSidewaysFriction = new WheelFrictionCurve
+        {
+            extremumSlip = normalSidewaysFriction.extremumSlip,
+            extremumValue = normalSidewaysFriction.extremumValue,
+            asymptoteSlip = normalSidewaysFriction.asymptoteSlip,
+            asymptoteValue = normalSidewaysFriction.asymptoteValue,
+            stiffness = sidewaysStiffness * handBrakeSidewaysStiffnessMultiplier
+        };
+    }
+
+    public void RevertToInitialFriction()
+    {
+        handBrakeForwardStiffnessMultiplier = 0.55f;
+        handBrakeSidewaysStiffnessMultiplier = 0.55f;
+
+        handBrakeForwardStiffness = forwardStiffness * handBrakeForwardStiffnessMultiplier;
+        handBrakeSidewaysStiffness = sidewaysStiffness * handBrakeSidewaysStiffnessMultiplier;
+        handBrakeForwardFriction = new WheelFrictionCurve
+        {
+            extremumSlip = normalForwardFriction.extremumSlip,
+            extremumValue = normalForwardFriction.extremumValue,
+            asymptoteSlip = normalForwardFriction.asymptoteSlip,
+            asymptoteValue = normalForwardFriction.asymptoteValue,
+            stiffness = forwardStiffness * handBrakeForwardStiffnessMultiplier
+        };
+        handBrakeSidewaysFriction = new WheelFrictionCurve
+        {
+            extremumSlip = normalSidewaysFriction.extremumSlip,
+            extremumValue = normalSidewaysFriction.extremumValue,
+            asymptoteSlip = normalSidewaysFriction.asymptoteSlip,
+            asymptoteValue = normalSidewaysFriction.asymptoteValue,
+            stiffness = sidewaysStiffness * handBrakeSidewaysStiffnessMultiplier
+        };
+    }
+
     // ----- Center of Mass adjustment
     // puts the center of mass at the height of the wheels
     private void ChangeCenterOfMass()
