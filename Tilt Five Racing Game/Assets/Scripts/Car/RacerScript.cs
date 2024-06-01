@@ -12,6 +12,8 @@ public class RacerScript : MonoBehaviour
 
     public string playerName;
     public float laptime;
+    public bool raceFinished = false;
+
     private bool TimerRunning = false;
     private bool startTimer = false;
     private Leaderboard leaderboardScript;
@@ -38,26 +40,24 @@ public class RacerScript : MonoBehaviour
             //Time.deltaTime: how long it took to get to that frame
             laptime += Time.deltaTime;
             timer.text = "Time: " + laptime.ToString("F2") + " sec";
-            //Debug.Log(laptime);
         }
         
     }
 
     private void FinishRace()
     {
+        raceFinished = true;
         TimerRunning = false;
-        leaderboard.SetActive(true);
+        //leaderboard.SetActive(true);
         leaderboardScript.AddScore(playerName, laptime);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("collided!");
-        if(other.tag == "Finish")
+        if(other.gameObject.name == "CheckPoint LightRay Cube 2")
         {
             FinishRace();
         }
-        
     }
 
 }

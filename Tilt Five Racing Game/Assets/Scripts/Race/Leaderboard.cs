@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,75 +6,56 @@ using System.Linq;
 
 public class Leaderboard : MonoBehaviour
 {
-    public Text currentName;
-    public Text currentTime;
-    public Text currentPos;
-
-    public GameObject[] slots;
-    private TextMeshProUGUI[] nameTexts;
-    private TextMeshProUGUI[] timeTexts; 
-
-    // Start is called before the first frame update
-    void Start()
+    [System.Serializable]
+    public class Racer
     {
-        nameTexts = slots.Select(s => s.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>()).ToArray();
-        timeTexts = slots.Select(s => s.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>()).ToArray();
+        public string name;
+        public float time;
     }
 
-    // Update is called once per frame
-    void Update()
+    public GameObject[] slots;
+    [SerializeField] private TextMeshProUGUI[] nameTexts;
+    [SerializeField] private TextMeshProUGUI[] timeTexts;
+
+    private List<Racer> racers = new List<Racer>();
+    [SerializeField] private int amountFinished = 0;
+    [SerializeField] private int shouldFinish;
+
+    void Start()
     {
-        
+        //nameTexts = slots.Select(s => s.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>()).ToArray();
+        //timeTexts = slots.Select(s => s.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>()).ToArray();
     }
 
     public void AddScore(string name, float time)
     {
-        currentName.text = name;
-        currentTime.text = time.ToString("F2");
-
-        int place = CalculatePlace(time);
-        if (place == -1)
+        amountFinished++;
+        Debug.Log("Amount finished is " + amountFinished + "  should be "+shouldFinish);
+        racers.Add(new Racer { name = name, time = time });
+        racers = racers.OrderBy(r => r.time).ToList();
+        UpdateLeaderboard();
+        if (amountFinished >= shouldFinish)
         {
-            currentPos.text = "Unranked";
-        }
-        else
-        {
-            currentPos.text = (place + 1).ToString();
-            UpdateSlots(place);
+            Debug.Log("all finished!!");
+            gameObject.SetActive(true);
         }
     }
-    private int CalculatePlace(float time)
-    {
-        for(int i=0; i<slots.Length; i++)
-        {
-            string slotTime = timeTexts[i].text;
-            Debug.Log("On position"+i+"time is: "+slotTime);
-            if (slotTime == "-" || float.Parse(slotTime) > time)
-            {
-                return i;
-            }
-        }
-        return -1;
-    }
 
-    private void UpdateSlots(int pos)
+    void UpdateLeaderboard()
     {
         for (int i = 0; i < slots.Length; i++)
         {
-            if (i == pos)
+            if (i < racers.Count)
             {
-                string tempName = nameTexts[i].text;
-                string tempTime = timeTexts[i].text;
-
-                nameTexts[i].text = currentName.text;
-                timeTexts[i].text = currentTime.text;
-                if (i != slots.Length - 1)
-                {
-                    nameTexts[i+1].text = tempName;
-                    timeTexts[i+1].text = tempTime;
-                }
-                break;
+                nameTexts[i].text = racers[i].name;
+                timeTexts[i].text = racers[i].time.ToString("F2");
+            }
+            else
+            {
+                nameTexts[i].text = "-";
+                timeTexts[i].text = "-";
             }
         }
     }
+
 }
