@@ -17,12 +17,14 @@ public class TimeWeatherController : MonoBehaviour
 
     private CarController carController1;
     private CarController carController2;
+    private ChangePostProcessing postProcessingScript;
 
     // Start is called before the first frame update
     void Start()
     {
         carController1 = Car1.GetComponent<CarController>();
         carController2 = Car2.GetComponent<CarController>();
+        postProcessingScript = gameObject.GetComponent<ChangePostProcessing>();
 
         isDay = false;
         isRaining = true;
@@ -32,8 +34,8 @@ public class TimeWeatherController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isDay) DayDome.SetActive(true);
-        else DayDome.SetActive(false);
+        if (isDay) SetDay();
+        else SetNight();
 
         if (isRaining) SetRainEffect();
         else DisableRainEffect();
@@ -42,6 +44,19 @@ public class TimeWeatherController : MonoBehaviour
         else StopFog();
     }
 
+    private void SetDay()
+    {
+        DayDome.SetActive(true);
+        postProcessingScript.DisableNightEffect();
+        postProcessingScript.SetDayEffect();
+    }
+
+    private void SetNight()
+    {
+        DayDome.SetActive(false);
+        postProcessingScript.DisableDayEffect();
+        postProcessingScript.SetNightEffect();
+    }
 
     private void SetRainEffect()
     {
