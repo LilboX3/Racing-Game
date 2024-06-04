@@ -16,6 +16,7 @@ public class RacerScript : MonoBehaviour
 
     private bool TimerRunning = false;
     private bool startTimer = false;
+    private bool checkPointPassed = false;
     private Leaderboard leaderboardScript;
 
     public UnityEngine.UI.Text timer;
@@ -54,9 +55,14 @@ public class RacerScript : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name == "CheckPoint LightRay Cube 2")
+        if(other.gameObject.name == "CheckPoint LightRay Cube 2" && checkPointPassed)
         {
             FinishRace();
+        }
+
+        if(other.gameObject.name == "CheckPoint LightRay Cube 1")
+        {
+            checkPointPassed = true;
         }
     }
 
