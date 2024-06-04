@@ -150,17 +150,8 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate() 
     {
-        // old order:
-        /*
-        GetInput();
-        HandleMotor();
-        HandleSteering();
-        UpdateWheels();
-        UpdateSteeringWheel();
-        */
-
         GetInput(); // Process input every physics step
-        CalculateCarPhysics(); // Manage the motor force application
+        CalculateCarEngine(); // Manage the motor force application
         SteerVehicle(); // Adjust steering based on inputs
         AdjustTraction(); // NEW: Adjust traction dynamically based on current vehicle state
         UpdateWheels(); // Update wheel positions and rotations
@@ -169,38 +160,6 @@ public class CarController : MonoBehaviour
     }
 
     // =====*=====*=====*=====*==========[ End of:   ][ Unity Native Functions ]=====*=====*=====*=====*==========
-    // =====*=====*=====*=====*==========[ Start of: ][ Old Functions ]=====*=====*=====*=====*==========
-    /*
-    private void GetInput()
-    {
-        horizontalInput = Input.GetAxis(HORIZONTAL);
-        verticalInput = Input.GetAxis(VERTICAL);
-        isBreaking = Input.GetKey(KeyCode.Space);
-    }
-    private void HandleMotor()
-    {
-        frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
-        frontRightWheelCollider.motorTorque = verticalInput * motorForce;
-        currentbrakeForce = isBreaking ? brakeForce : 0f;
-        ApplyBreaking();
-    }
-
-    private void ApplyBreaking()
-    {
-        frontLeftWheelCollider.brakeTorque = currentbrakeForce;
-        frontRightWheelCollider.brakeTorque = currentbrakeForce;
-        rearLeftWheelCollider.brakeTorque = currentbrakeForce;
-        rearRightWheelCollider.brakeTorque = currentbrakeForce;
-    }
-    private void HandleSteering()
-    {
-        currentSteerAngle = maxSteerAngle * horizontalInput;
-        frontLeftWheelCollider.steerAngle = currentSteerAngle;
-        frontRightWheelCollider.steerAngle = currentSteerAngle;
-    }
-    */
-
-    // =====*=====*=====*=====*==========[ End of:   ][ Old Functions ]=====*=====*=====*=====*==========
     // =====*=====*=====*=====*==========[ Start of: ][ Initializer Functions ]=====*=====*=====*=====*==========
 
     private void GetAllComponents()
@@ -410,7 +369,7 @@ public class CarController : MonoBehaviour
     }
 
     // ----- Engine Power/RPM calculations + braking and actual movement
-    private void CalculateCarPhysics()
+    private void CalculateCarEngine()
     {
         WheelRPM();
         CalculateEnginePower();
