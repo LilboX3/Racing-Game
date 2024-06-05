@@ -522,6 +522,7 @@ public class CarController : MonoBehaviour
     private void ApplyBraking()
     {
         currentbrakeForce = CalculateBrakeForce();
+        //FIX !! cant go backwards
         
         foreach (WheelCollider wheel in wheelColliders) // new ... check if makes sense
         {
@@ -535,7 +536,7 @@ public class CarController : MonoBehaviour
             // if not pressing gas pedal, either brake at low speeds or slowly decelerate while rolling
             return (KPH >= brakeThreshhold) ? brakeForce : rollDecay;
         }
-        else if (verticalInput < 0)
+        /*else if (verticalInput < 0) unnötig, so kann man gar nicht rückwarts
         {
             if(KPH > 0)
             {   
@@ -545,10 +546,10 @@ public class CarController : MonoBehaviour
             else
             {
                 // go backwards if standing still or already going backwards
-                // reverse = true;
+                //reverse = true;
                 return 0;
             }
-        }
+        }*/
         else
         {
             return 0;

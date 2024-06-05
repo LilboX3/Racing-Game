@@ -22,7 +22,6 @@ public class WaterParticleController : MonoBehaviour
             waterParticles.Play();
         } else
         {
-            Debug.Log("No more slippery");
             waterParticles.Stop();
         }
     }
