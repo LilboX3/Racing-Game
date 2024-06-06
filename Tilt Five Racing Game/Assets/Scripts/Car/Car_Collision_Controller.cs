@@ -91,6 +91,15 @@ public class Car_Collision_Controller : MonoBehaviour
         if (carController != null)
         {
             carController.OnCarCollision();
+
+            if (collision.transform.CompareTag("Player"))
+            {
+                CarController otherCarController = collision.gameObject.GetComponent<CarController>();
+                if (otherCarController != null)
+                {
+                    otherCarController.OnCarCollision();
+                }
+            }
         }
     }
 }
