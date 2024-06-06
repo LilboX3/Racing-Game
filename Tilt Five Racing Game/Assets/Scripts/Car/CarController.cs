@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEditor.Build.Content;
 #endif
 using UnityEngine;
+using UnityEngine.UI;
 
 // Syntax Note: Functions with a line of space inbetween are unrelated, functions with no line of space inbetween are a set.
 
@@ -124,6 +125,18 @@ public class CarController : MonoBehaviour
     public float speedBoostDepletionRate = 20.0f;           // charge depleted per second while speedboost is running
     public float speedBoostRenerationRate = 6.25f;          // charge replenished per second
 
+
+    // idk where to put all this stuff
+
+    [Header("Stats")]
+    [SerializeField] private float health = 100f;
+    private bool isImmune = false;  // Immunity flag
+    private float immunityDuration = 0.5f;  // Immunity duration in seconds
+    private float maxDamageFraction = 0.3f; // max fraction of health that player can lose in a single collision           
+    [SerializeField] private Text healthText;
+    [SerializeField] private ParticleSystem smokeParticleSystem; // Reference to the smoke particle system
+    [SerializeField] private float healthThreshold = 50f; // Health threshold to enable smoke
+
     // ----------v---------- Public runtime variables for other scripts ----------v----------
     [HideInInspector] public int currentGear = 1;           // the currently active gear
     [HideInInspector] public float KPH;                     // kilometers per hour the car is going
@@ -146,6 +159,8 @@ public class CarController : MonoBehaviour
         InitializeWheelConfiguration(); // Initialize the working wheel arrays for code streamlining
         ChangeCenterOfMass(); // Manipulate the center of mass to make the car more stable
         InitializeSteeringWheel(); // Prepare the car's steering wheel (in the cockpit)
+        UpdateHealthText();  // Update the text at the start
+        UpdateSmokeParticles(); // At full HP -> no smoke yet
     }
 
     private void FixedUpdate() 
@@ -632,10 +647,78 @@ public class CarController : MonoBehaviour
 
 
 
+    // Method to calculate damage based on speed
+    private float CalculateDamage(float speed)
+    {
+        float maxDamage = 30f;  // Maximum damage that can be taken at once
+        float k = maxDamage / 100f;  // Coefficient for linear speed term assuming 100 is the speed at which max damage is taken
+
+        // Calculate damage using the linear function
+        float damage = k * speed;
+
+        // Cap the damage to the maximum value
+        damage = Mathf.Min(damage, maxDamage);
+
+        return damage;
+    }
+
+    // Method to apply damage to the car's health
+    private void ApplyDamage(float damage)
+    {
+        health -= damage;
+        health = Mathf.Max(health, 0);  // Ensure health doesn't go below 0
+
+        Debug.Log($"Damage applied: {damage}. Current health: {health}");
+
+        if (health <= 0)
+        {
+            // Handle car destruction or game over logic here
+            Debug.Log("Car is destroyed!");
+        }
+
+        UpdateHealthText();
+        UpdateSmokeParticles();
+    }
+
+    private IEnumerator ImmunityFrame()
+    {
+        isImmune = true;
+        yield return new WaitForSeconds(immunityDuration);
+        isImmune = false;
+    }
+
+    private void UpdateHealthText()
+    {
+        if (healthText != null)
+        {
+            healthText.text = "HP: " + health.ToString("0") + "/100";
+        }
+    }
+
+    private void UpdateSmokeParticles()
+    {
+        if (health < healthThreshold)
+        {
+            smokeParticleSystem.gameObject.SetActive(true);
+        }
+        else
+        {
+            smokeParticleSystem.gameObject.SetActive(false);
+        }
+    }
+
     // =====*=====*=====*=====*==========[ End of:   ][ Private Functions ]=====*=====*=====*=====*==========
     // =====*=====*=====*=====*==========[ Start of: ][ Public Functions ]=====*=====*=====*=====*==========
 
-    // nobody here but us chickens
+    public void OnCarCollision()
+    {
+        if (!isImmune)
+        {
+            ApplyDamage(CalculateDamage(KPH));
+
+            StartCoroutine(ImmunityFrame());
+        }
+    }
 
     // =====*=====*=====*=====*==========[ End of:   ][ Public Functions ]=====*=====*=====*=====*==========
 }
