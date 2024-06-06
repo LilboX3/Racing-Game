@@ -17,14 +17,14 @@ public class TimeWeatherController : MonoBehaviour
     public bool isFoggy;
 
     private CarController carController1;
-    private CarController carController2;
+    private CarController1 carController2;
     private ChangePostProcessing postProcessingScript;
 
     // Start is called before the first frame update
     void Start()
     {
         carController1 = Car1.GetComponent<CarController>();
-        carController2 = Car2.GetComponent<CarController>();
+        carController2 = Car2.GetComponent<CarController1>();
         postProcessingScript = gameObject.GetComponent<ChangePostProcessing>();
 
         Debug.Log(MultiplayerValueController.isDay);
