@@ -25,6 +25,16 @@ public class RacerScript : MonoBehaviour
     void Start()
     {
         leaderboardScript = leaderboard.GetComponent<Leaderboard>();
+
+        Debug.Log(MultiplayerValueController.player1Name);
+        if (gameObject.name == "Drift Racer")
+        {
+            playerName = MultiplayerValueController.player1Name;
+        }
+        else if (gameObject.name == "Drift Racer (1)")
+        {
+            playerName = MultiplayerValueController.player2Name;
+        }
     }
 
     // Update is called once per frame

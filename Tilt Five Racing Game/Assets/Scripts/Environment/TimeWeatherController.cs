@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,9 +27,10 @@ public class TimeWeatherController : MonoBehaviour
         carController2 = Car2.GetComponent<CarController>();
         postProcessingScript = gameObject.GetComponent<ChangePostProcessing>();
 
-        isDay = false;
-        isRaining = true;
-        isFoggy = false;
+        Debug.Log(MultiplayerValueController.isDay);
+        isDay = MultiplayerValueController.isDay;
+        isRaining = MultiplayerValueController.isRaining;
+        isFoggy = MultiplayerValueController.isFoggy;
     }
 
     // Update is called once per frame
