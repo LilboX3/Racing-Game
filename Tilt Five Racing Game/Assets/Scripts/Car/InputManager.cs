@@ -6,8 +6,8 @@ public class InputManager : MonoBehaviour
 {
 
     // =====*=====*=====*=====*==========[ Start of: ][ Code Helper ]=====*=====*=====*=====*==========
-    private const string HORIZONTAL = "Horizontal";
-    private const string VERTICAL = "Vertical";
+    private const string HORIZONTAL = "Horizontal2";
+    private const string VERTICAL = "Vertical2";
     // =====*=====*=====*=====*==========[ End of:   ][ Code Helper ]=====*=====*=====*=====*==========
     // =====*=====*=====*=====*==========[ Start of: ][ Variable Declarations ]=====*=====*=====*=====*==========
     // ----------v---------- Settings and private runtime variables ----------v----------
@@ -47,7 +47,7 @@ public class InputManager : MonoBehaviour
 
         horizontal = Input.GetAxis(HORIZONTAL);
         vertical = Input.GetAxis(VERTICAL);
-        handbrake = (Input.GetAxis("Jump") != 0) ? true : false;
+        handbrake = (Input.GetAxis("Jump1") != 0) ? true : false;
         if (Input.GetKey(KeyCode.LeftShift)) {
             boosting = true;
         } 
