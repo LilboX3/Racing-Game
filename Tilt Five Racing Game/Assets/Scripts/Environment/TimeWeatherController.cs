@@ -26,8 +26,7 @@ public class TimeWeatherController : MonoBehaviour
         carController1 = Car1.GetComponent<CarController>();
         carController2 = Car2.GetComponent<CarController1>();
         postProcessingScript = gameObject.GetComponent<ChangePostProcessing>();
-
-        Debug.Log(MultiplayerValueController.isDay);
+        
         isDay = MultiplayerValueController.isDay;
         isRaining = MultiplayerValueController.isRaining;
         isFoggy = MultiplayerValueController.isFoggy;
