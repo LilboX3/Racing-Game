@@ -5,6 +5,7 @@ using UnityEngine;
 public class Car_Collision_Controller : MonoBehaviour
 {
     private Car_SFX_Controller sfxController;
+    private CarController carController;
 
     public enum CollisionType
     {
@@ -24,6 +25,15 @@ public class Car_Collision_Controller : MonoBehaviour
         if (sfxController == null)
         {
             Debug.LogError("Car_Collision_Controller on " + gameObject.name + ": Car_SFX_Controller script not found!");
+        }
+
+        // Try to get the CarController component
+        carController = GetComponent<CarController>();
+
+        // If CarController is not found, log an error
+        if (carController == null)
+        {
+            Debug.LogError("Car_Collision_Controller on " + gameObject.name + ": CarController script not found!");
         }
     }
     
@@ -76,6 +86,20 @@ public class Car_Collision_Controller : MonoBehaviour
             //----------
             // Play a sound for untagged objects
             sfxController.PlayCollisionSound(collisionType);
+        }
+
+        if (carController != null)
+        {
+            carController.OnCarCollision();
+
+            if (collision.transform.CompareTag("Player"))
+            {
+                CarController otherCarController = collision.gameObject.GetComponent<CarController>();
+                if (otherCarController != null)
+                {
+                    otherCarController.OnCarCollision();
+                }
+            }
         }
     }
 }
