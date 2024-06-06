@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class RacerScript : MonoBehaviour
 {
@@ -16,7 +15,7 @@ public class RacerScript : MonoBehaviour
 
     private bool TimerRunning = false;
     private bool startTimer = false;
-    private bool checkPointPassed = false;
+    public bool checkPointPassed = false;
     private Leaderboard leaderboardScript;
 
     public UnityEngine.UI.Text timer;

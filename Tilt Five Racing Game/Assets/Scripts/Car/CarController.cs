@@ -159,6 +159,7 @@ public class CarController : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1f;
         GetAllComponents(); // Find all required components
         InitializeWheelConfiguration(); // Initialize the working wheel arrays for code streamlining
         ChangeCenterOfMass(); // Manipulate the center of mass to make the car more stable

@@ -36,6 +36,7 @@ public class Leaderboard : MonoBehaviour
         UpdateLeaderboard();
         if (amountFinished >= shouldFinish)
         {
+            Time.timeScale = 0.2f;
             Debug.Log("all finished!!");
             gameObject.SetActive(true);
         }
