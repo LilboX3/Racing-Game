@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEditor.Build.Content;
 #endif
 using UnityEngine;
+using UnityEngine.UI;
 
 // Syntax Note: Functions with a line of space inbetween are unrelated, functions with no line of space inbetween are a set.
 
@@ -124,6 +125,21 @@ public class CarController1 : MonoBehaviour
     public float speedBoostDepletionRate = 20.0f;           // charge depleted per second while speedboost is running
     public float speedBoostRenerationRate = 6.25f;          // charge replenished per second
 
+
+    // idk where to put all this stuff
+
+    [Header("Stats")]
+    [SerializeField] private float health = 100f;
+    private bool isImmune = false;  // Immunity flag
+    private float immunityDuration = 0.5f;  // Immunity duration in seconds
+    [SerializeField] private Text healthText;
+    [SerializeField] private ParticleSystem smokeParticleSystem; // Reference to the smoke particle system
+    [SerializeField] private ParticleSystem explosionParticleSystem; // Reference to the explosion particle system
+    [SerializeField] private float healthThreshold = 50f; // Health threshold to enable isDamaged
+    [SerializeField] private bool canDrive = true;
+    [SerializeField] private bool isDamaged = false;
+    [SerializeField] private Text countdownText; // Reference to the countdown text UI element
+
     // ----------v---------- Public runtime variables for other scripts ----------v----------
     [HideInInspector] public int currentGear = 1;           // the currently active gear
     [HideInInspector] public float KPH;                     // kilometers per hour the car is going
@@ -146,6 +162,8 @@ public class CarController1 : MonoBehaviour
         InitializeWheelConfiguration(); // Initialize the working wheel arrays for code streamlining
         ChangeCenterOfMass(); // Manipulate the center of mass to make the car more stable
         InitializeSteeringWheel(); // Prepare the car's steering wheel (in the cockpit)
+        UpdateHealthText();  // Update the text at the start
+        UpdateParticles(); // At full HP -> no smoke yet
     }
 
     private void FixedUpdate() 
@@ -382,17 +400,20 @@ public class CarController1 : MonoBehaviour
 
     private void GetInput()
     {
-        // Get raw input from Input Manager
-        verticalInput = inputManager.vertical;
-        horizontalInput = inputManager.horizontal;
-        handbrakeInput = inputManager.handbrake;
-        boostInput = inputManager.boosting;
+        if (canDrive)
+        {
+            // Get raw input from Input Manager
+            verticalInput = inputManager.vertical;
+            horizontalInput = inputManager.horizontal;
+            handbrakeInput = inputManager.handbrake;
+            boostInput = inputManager.boosting;
 
-        // Extrapolate raw input
-        // This is to allow for treating the variables differently in the logic, because the input doesn't necessarily reflect what the vehicle actually CAN do. e.g.: handbrake in mid-air
-        // For now steering and acceleration/deceleration is treated within the functions.
-        isHandBraking = handbrakeInput;
-        isSpeedBoosting = boostInput;
+            // Extrapolate raw input
+            // This is to allow for treating the variables differently in the logic, because the input doesn't necessarily reflect what the vehicle actually CAN do. e.g.: handbrake in mid-air
+            // For now steering and acceleration/deceleration is treated within the functions.
+            isHandBraking = handbrakeInput;
+            isSpeedBoosting = boostInput;
+        }
     }
 
     private void UpdateWheels()
@@ -557,7 +578,14 @@ public class CarController1 : MonoBehaviour
     }
     private void UpdateVehicleSpeed()
     {
-        KPH = carRigidbody.velocity.magnitude * 3.6f;
+        if (!isDamaged)
+        {
+            KPH = carRigidbody.velocity.magnitude * 3.6f;
+        }
+        else
+        {
+            KPH = carRigidbody.velocity.magnitude * 1.2f;
+        }
     }
     private void UpdateGearShift()  
     {
@@ -632,10 +660,133 @@ public class CarController1 : MonoBehaviour
 
 
 
+
+    // Method to calculate damage based on speed
+    private float CalculateDamage(float speed)
+    {
+        float maxDamage = 50f;
+        float maxSpeed = 100f; // The speed at which maxDamage is applied
+        float currentSpeed = speed;
+
+        // Scale damage linearly with speed up to maxSpeed
+        float damage = (currentSpeed / maxSpeed) * maxDamage;
+
+        // Ensure the damage does not exceed maxDamage
+        damage = Mathf.Min(damage, maxDamage);
+
+        return damage;
+    }
+
+
+    // Method to apply damage to the car's health
+    private void ApplyDamage(float damage)
+    {
+        health -= damage;
+        health = Mathf.Max(health, 0);  // Ensure health doesn't go below 0
+
+        Debug.Log($"Damage applied: {damage}. Current health: {health}");
+
+        if (health < healthThreshold)
+        {
+            isDamaged = true;
+        }
+
+        if (health <= 0 && canDrive)
+        {
+            StartCoroutine(OnDeath(10f));
+            Debug.Log("Car is destroyed!");
+        }
+
+        UpdateHealthText();
+        UpdateParticles();
+    }
+
+    private IEnumerator ImmunityFrame()
+    {
+        isImmune = true;
+        yield return new WaitForSeconds(immunityDuration);
+        isImmune = false;
+    }
+
+    private void UpdateHealthText()
+    {
+        if (healthText != null)
+        {
+            healthText.text = "HP: " + health.ToString("0") + "/100";
+        }
+    }
+
+    private void UpdateParticles()
+    {
+        if (health < healthThreshold)
+        {
+            smokeParticleSystem.gameObject.SetActive(true);
+        }
+        else
+        {
+            smokeParticleSystem.gameObject.SetActive(false);
+        }
+
+        if (health <= 0)
+        {
+            explosionParticleSystem.gameObject.SetActive(true);
+        }
+        else
+        {
+            explosionParticleSystem.gameObject.SetActive(false);
+        }
+    }
+
+    private IEnumerator OnDeath(float duration)
+    {
+        float remainingTime = duration;
+
+        canDrive = false;
+        DisableCar();
+        countdownText.gameObject.SetActive(true);
+
+        while (remainingTime > 0)
+        {
+            countdownText.text = $"Respawn in: {remainingTime.ToString("F1")}s";
+            remainingTime -= Time.deltaTime;
+            yield return null;
+        }
+
+        countdownText.gameObject.SetActive(false);
+        canDrive = true;
+        health = 100f;
+        isDamaged = false;
+        UpdateHealthText();
+        UpdateParticles();
+    }
+
+    private void DisableCar()
+    {
+        carRigidbody.velocity = Vector3.zero;
+        carRigidbody.angularVelocity = Vector3.zero;
+
+        foreach (WheelCollider wheel in wheelColliders)
+        {
+            wheel.brakeTorque = float.MaxValue;
+            wheel.motorTorque = 0;
+        }
+
+        KPH = 0;
+    }
+
+
     // =====*=====*=====*=====*==========[ End of:   ][ Private Functions ]=====*=====*=====*=====*==========
     // =====*=====*=====*=====*==========[ Start of: ][ Public Functions ]=====*=====*=====*=====*==========
 
-    // nobody here but us chickens
+    public void OnCarCollision()
+    {
+        if (!isImmune)
+        {
+            StartCoroutine(ImmunityFrame());
+
+            ApplyDamage(CalculateDamage(KPH));
+        }
+    }
 
     // =====*=====*=====*=====*==========[ End of:   ][ Public Functions ]=====*=====*=====*=====*==========
 }
