@@ -11,9 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main Menu.unity
     guid: 3774ee29542b16647a3309ef2e0d2ee3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Helmut's Workshop/COPY.unity
     guid: c3c1c20e8f4207748983404ce6bc0e25
+  - enabled: 1
+    path: Assets/Scenes/Chris' Workshop/Workshop_2 1.unity
+    guid: ac8b0371a05d73c448f4121d02944ed0
   - enabled: 1
     path: Assets/Scenes/Aline's Workshop/Demo House.unity
     guid: 9d726ca2cd35a7149a73e434c28195d2
