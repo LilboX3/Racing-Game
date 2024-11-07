@@ -17,14 +17,12 @@ public class TimeWeatherController : MonoBehaviour
     public bool isFoggy;
 
     private CarController carController1;
-    private CarController1 carController2;
     private ChangePostProcessing postProcessingScript;
 
     // Start is called before the first frame update
     void Start()
     {
         carController1 = Car1.GetComponent<CarController>();
-        carController2 = Car2.GetComponent<CarController1>();
         postProcessingScript = gameObject.GetComponent<ChangePostProcessing>();
         
         isDay = MultiplayerValueController.isDay;
@@ -64,7 +62,6 @@ public class TimeWeatherController : MonoBehaviour
         RainEffect.SetActive(true);
 
         //TODO? carController1.ChangeToSlipperyFriction();
-        carController2.ChangeToSlipperyFriction();
     }
 
     private void DisableRainEffect()
@@ -72,7 +69,6 @@ public class TimeWeatherController : MonoBehaviour
         RainEffect.SetActive(false);
 
         //TODO? carController1.RevertToInitialFriction();
-        carController2.RevertToInitialFriction();
 
     }
 

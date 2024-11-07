@@ -6,7 +6,6 @@ public class Car_Collision_Controller : MonoBehaviour
 {
     private Car_SFX_Controller sfxController;
     private CarController carController = null;
-    private CarController1 carController1 = null;
 
     public enum CollisionType
     {
@@ -27,29 +26,14 @@ public class Car_Collision_Controller : MonoBehaviour
         {
             Debug.LogError("Car_Collision_Controller on " + gameObject.name + ": Car_SFX_Controller script not found!");
         }
+        // Try to get the CarController component
+        carController = GetComponent<CarController>();
 
-        if(gameObject.name == "Drift Racer")
-        {
-            // Try to get the CarController component
-            carController = GetComponent<CarController>();
-
-            // If CarController is not found, log an error
-            if (carController == null)
-            {
-                Debug.LogError("Car_Collision_Controller on " + gameObject.name + ": CarController script not found!");
-            }
-        }
-        else if(gameObject.name == "Drift Racer (1)")
-        {
-            // Try to get the CarController1 component
-            carController1 = GetComponent<CarController1>();
-
-            // If CarController is not found, log an error
-            if (carController1 == null)
-            {
-                Debug.LogError("Car_Collision_Controller on " + gameObject.name + ": CarController1 script not found!");
-            }
-        }
+       // If CarController is not found, log an error
+         if (carController == null)
+         {
+            Debug.LogError("Car_Collision_Controller on " + gameObject.name + ": CarController script not found!");
+         }
     }
     
     // =====/////===== End of: Unity Lifecycle Functions =====/////=====
@@ -74,6 +58,7 @@ public class Car_Collision_Controller : MonoBehaviour
 
             // Play the assigned sound
             sfxController.PlayCollisionSound(collisionType);
+            carController.OnCarCollision();
         }
         else
         {
@@ -101,34 +86,7 @@ public class Car_Collision_Controller : MonoBehaviour
             //----------
             // Play a sound for untagged objects
             sfxController.PlayCollisionSound(collisionType);
-        }
-
-        if (carController != null)
-        {
-            carController.OnCarCollision();
-
-            if (collision.transform.CompareTag("Player"))
-            {
-                CarController1 otherCarController = collision.gameObject.GetComponent<CarController1>();
-                if (otherCarController != null)
-                {
-                    otherCarController.OnCarCollision();
-                }
-            }
-        }
-
-        else if (carController1 != null)
-        {
-            carController1.OnCarCollision();
-
-            if (collision.transform.CompareTag("Player"))
-            {
-                CarController otherCarController = collision.gameObject.GetComponent<CarController>();
-                if (otherCarController != null)
-                {
-                    otherCarController.OnCarCollision();
-                }
-            }
+            carController.OnCarCollision();  //TODO: should this be here?
         }
     }
 }

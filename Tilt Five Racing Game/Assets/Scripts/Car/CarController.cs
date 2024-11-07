@@ -17,8 +17,6 @@ public class CarController : MonoBehaviour
         FourWheelDrive
     }
 
-    [Header("Input Manager Script")]
-    private InputManager1 inputManager;
     private Rigidbody carRigidbody;
 
     private const string HORIZONTAL = "Horizontal";
@@ -30,6 +28,7 @@ public class CarController : MonoBehaviour
     private float currentbreakForce;
     private float initialMotorForce;
     private bool isBreaking;
+    private bool isDead = false;
 
     [SerializeField] private float motorForce;
     [SerializeField] private float breakForce;
@@ -60,7 +59,6 @@ public class CarController : MonoBehaviour
     //Lowered center of mass in rigidbody to prevent car from flipping
     private void Start()
     {
-        inputManager = gameObject.GetComponent<InputManager1>();
         carRigidbody = gameObject.GetComponent<Rigidbody>();
         //Might cause car to behave like a pendulum?
         carRigidbody.centerOfMass += new Vector3(0, -1f, 0);
@@ -79,9 +77,12 @@ public class CarController : MonoBehaviour
 
     private void GetInput()
     {
-        verticalInput = inputManager.vertical;
-        horizontalInput = inputManager.horizontal;
-        isBreaking = inputManager.handbrake;
+        if (!isDead)
+        {
+            verticalInput = Input.GetAxis(VERTICAL);
+            horizontalInput = Input.GetAxis(HORIZONTAL);
+            isBreaking = (Input.GetAxis("Jump") != 0) ? true : false;
+        }
     }
 
     private void HandleMotor()
@@ -128,7 +129,7 @@ public class CarController : MonoBehaviour
     {
         if (isDamaged)
         {
-            motorForce *= 0.5f;
+            motorForce = initialMotorForce/2;
         }
         else
         {
@@ -193,6 +194,7 @@ public class CarController : MonoBehaviour
     {
         float remainingTime = duration;
 
+        isDead = true;
         canDrive = false;
         DisableCar();
         countdownText.gameObject.SetActive(true);
@@ -204,6 +206,7 @@ public class CarController : MonoBehaviour
             yield return null;
         }
 
+        isDead = false;
         countdownText.gameObject.SetActive(false);
         canDrive = true;
         health = 100f;
@@ -256,7 +259,7 @@ public class CarController : MonoBehaviour
         if (!isImmune)
         {
             StartCoroutine(ImmunityFrame());
-            float velocity = carRigidbody.velocity.magnitude;
+            float velocity = isDamaged ? carRigidbody.velocity.magnitude * 1.2f: carRigidbody.velocity.magnitude * 3.6f;
             ApplyDamage(CalculateDamage(velocity));
         }
     }
