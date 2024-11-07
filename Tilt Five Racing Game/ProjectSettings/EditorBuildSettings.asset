@@ -21,10 +21,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Aline's Workshop/LEVEL 2.unity
     guid: 9d726ca2cd35a7149a73e434c28195d2
   - enabled: 1
-    path: Assets/Scenes/Aline's Workshop/Bigger Level.unity
+    path: Assets/Scenes/Aline's Workshop/LEVEL 3.unity
     guid: d9acab02fb3330248820f6e93dd42bef
   - enabled: 0
-    path: Assets/Scenes/Aline's Workshop/LEVEL 3.unity
+    path: Assets/Scenes/Aline's Workshop/First Demo.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 0
     path: Assets/Scenes/Race_Track_0.unity

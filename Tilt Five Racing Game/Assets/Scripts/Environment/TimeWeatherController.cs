@@ -63,7 +63,7 @@ public class TimeWeatherController : MonoBehaviour
     {
         RainEffect.SetActive(true);
 
-        carController1.ChangeToSlipperyFriction();
+        //TODO? carController1.ChangeToSlipperyFriction();
         carController2.ChangeToSlipperyFriction();
     }
 
@@ -71,7 +71,7 @@ public class TimeWeatherController : MonoBehaviour
     {
         RainEffect.SetActive(false);
 
-        carController1.RevertToInitialFriction();
+        //TODO? carController1.RevertToInitialFriction();
         carController2.RevertToInitialFriction();
 
     }
