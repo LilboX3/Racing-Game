@@ -3897,6 +3897,10 @@ PrefabInstance:
       value: Drift Racer
       objectReference: {fileID: 0}
     - target: {fileID: 7693111920228139747, guid: 58931e8642cfe564b9f75eb006f356b1, type: 3}
+      propertyPath: m_Drag
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7693111920228139747, guid: 58931e8642cfe564b9f75eb006f356b1, type: 3}
       propertyPath: m_Constraints
       value: 0
       objectReference: {fileID: 0}
@@ -3954,9 +3958,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8554190018125650978, guid: 58931e8642cfe564b9f75eb006f356b1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 47124514}
-    - targetCorrespondingSourceObject: {fileID: 2358673793335442420, guid: 58931e8642cfe564b9f75eb006f356b1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1546670446}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6340175005630962042, guid: 58931e8642cfe564b9f75eb006f356b1, type: 3}
       insertIndex: 2
@@ -16430,11 +16431,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4096292449270370, guid: 1e82b76f72cc0254ca9a974405343c94, type: 3}
   m_PrefabInstance: {fileID: 616991886}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &619011009 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2358673793335442420, guid: 58931e8642cfe564b9f75eb006f356b1, type: 3}
-  m_PrefabInstance: {fileID: 172451848}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &619196752
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19885,79 +19881,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4554951595836922, guid: 7cffb302e4cc60e4c907f318fbb5cb15, type: 3}
   m_PrefabInstance: {fileID: 735239332}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &736234082
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 619011009}
-    m_Modifications:
-    - target: {fileID: 169260, guid: 61efad8215cd8a2469d3b566dfd8d56d, type: 3}
-      propertyPath: m_Name
-      value: AuraSpinningWater
-      objectReference: {fileID: 0}
-    - target: {fileID: 453802, guid: 61efad8215cd8a2469d3b566dfd8d56d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 453802, guid: 61efad8215cd8a2469d3b566dfd8d56d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 453802, guid: 61efad8215cd8a2469d3b566dfd8d56d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 453802, guid: 61efad8215cd8a2469d3b566dfd8d56d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 453802, guid: 61efad8215cd8a2469d3b566dfd8d56d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 453802, guid: 61efad8215cd8a2469d3b566dfd8d56d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 453802, guid: 61efad8215cd8a2469d3b566dfd8d56d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 453802, guid: 61efad8215cd8a2469d3b566dfd8d56d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 453802, guid: 61efad8215cd8a2469d3b566dfd8d56d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 453802, guid: 61efad8215cd8a2469d3b566dfd8d56d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 19904714, guid: 61efad8215cd8a2469d3b566dfd8d56d, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19951792, guid: 61efad8215cd8a2469d3b566dfd8d56d, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19980966, guid: 61efad8215cd8a2469d3b566dfd8d56d, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19985950, guid: 61efad8215cd8a2469d3b566dfd8d56d, type: 3}
-      propertyPath: m_Materials.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 61efad8215cd8a2469d3b566dfd8d56d, type: 3}
 --- !u!1001 &741442761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26046,7 +25969,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   motorForce: 3000
   breakForce: 100
-  maxSteerAngle: 90
+  maxSteerAngle: 20
   frontLeftWheelCollider: {fileID: 1448470931}
   frontRightWheelCollider: {fileID: 1857341973}
   rearLeftWheelCollider: {fileID: 1869803877}
@@ -42434,11 +42357,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4735269973372288, guid: 1483cae5230049048a75f92f530f1516, type: 3}
   m_PrefabInstance: {fileID: 1541938271}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1546670446 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 453802, guid: 61efad8215cd8a2469d3b566dfd8d56d, type: 3}
-  m_PrefabInstance: {fileID: 736234082}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1548237586
 PrefabInstance:

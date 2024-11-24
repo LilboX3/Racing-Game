@@ -19321,6 +19321,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2210251247526807753, guid: dd01663692b4c224fb3a3a9d174c2efb, type: 3}
+      propertyPath: m_ForwardFriction.m_Stiffness
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2987593907301406754, guid: dd01663692b4c224fb3a3a9d174c2efb, type: 3}
       propertyPath: healthBar
       value: 
@@ -19333,10 +19337,30 @@ PrefabInstance:
       propertyPath: countdownText
       value: 
       objectReference: {fileID: 1068278438}
+    - target: {fileID: 2987593907301406754, guid: dd01663692b4c224fb3a3a9d174c2efb, type: 3}
+      propertyPath: maxSteerAngle
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4440024406027521854, guid: dd01663692b4c224fb3a3a9d174c2efb, type: 3}
+      propertyPath: m_ForwardFriction.m_Stiffness
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4834607096476454953, guid: dd01663692b4c224fb3a3a9d174c2efb, type: 3}
+      propertyPath: m_ForwardFriction.m_Stiffness
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7417405429312615174, guid: dd01663692b4c224fb3a3a9d174c2efb, type: 3}
       propertyPath: timer
       value: 
       objectReference: {fileID: 1998677222}
+    - target: {fileID: 8562513022250831637, guid: dd01663692b4c224fb3a3a9d174c2efb, type: 3}
+      propertyPath: m_ForwardFriction.m_Stiffness
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8835723870332176274, guid: dd01663692b4c224fb3a3a9d174c2efb, type: 3}
+      propertyPath: m_Drag
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8904461642429920860, guid: dd01663692b4c224fb3a3a9d174c2efb, type: 3}
       propertyPath: m_Name
       value: Drift Racer

@@ -1300,13 +1300,13 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 3
+    m_Stiffness: 5
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 3
+    m_Stiffness: 5
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -2901,13 +2901,13 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 3
+    m_Stiffness: 5
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 3
+    m_Stiffness: 5
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4205,6 +4205,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b73127b140ea04481f97dc56162733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  motorForce: 0
+  breakForce: 0
+  maxSteerAngle: 30
   frontLeftWheelCollider: {fileID: 472808553849743379}
   frontRightWheelCollider: {fileID: 2474648786783175112}
   rearLeftWheelCollider: {fileID: 2900056547861275985}
@@ -4213,78 +4216,14 @@ MonoBehaviour:
   frontRightWheelTransform: {fileID: 6984856205779362338}
   rearLeftWheelTransform: {fileID: 1733266774496151823}
   rearRightWheelTransform: {fileID: 5677515169184026163}
-  driveType: 1
-  maxRPM: 8000
-  minRPM: 5000
-  enginePowerCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 4.3402834
-      value: 406.34308
-      inSlope: 0.111855164
-      outSlope: 0.111855164
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.112477586
-    - serializedVersion: 3
-      time: 7903.82
-      value: 776.99
-      inSlope: -0.005127997
-      outSlope: -0.005127997
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.0882489
-      outWeight: 0.550979
-    - serializedVersion: 3
-      time: 9529.063
-      value: 564.7064
-      inSlope: -0.25033534
-      outSlope: -0.25033534
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.2511919
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  gearRatios:
-  - 4
-  - 2.8
-  - 2.2
-  - 1.6
-  - 1.1
-  - 0.7
-  gearChangeSpeed:
-  - 60
-  - 100
-  - 130
-  - 170
-  - 200
-  - 250
-  brakeForce: 25
-  brakeThreshhold: 5
-  rollDecay: 5
-  maxSteerAngle: 30
-  steeringWheelTransform: {fileID: 956205556720843391}
-  maxSteeringWheelRotation: 135
-  forwardStiffness: 1
-  sidewaysStiffness: 1
-  handBrakeForwardStiffnessMultiplier: 0.55
-  handBrakeSidewaysStiffnessMultiplier: 0.55
-  downForceValue: 10
-  speedBoostForceMultiplier: 1.5
-  speedBoostFrictionMultiplier: 1.5
-  speedBoostCharge: 100
-  speedBoostDepletionRate: 20
-  speedBoostRenerationRate: 6.25
-  currentGear: 1
-  KPH: 0
-  currentEngineRPM: 0
-  reverse: 0
-  isSpeedBoosting: 0
-  currentBoost: 0
+  health: 100
+  healthBar: {fileID: 0}
+  smokeParticleSystem: {fileID: 0}
+  explosionParticleSystem: {fileID: 0}
+  healthThreshold: 50
+  canDrive: 1
+  isDamaged: 0
+  countdownText: {fileID: 0}
 --- !u!114 &7795263453534769971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4299,6 +4238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carController: {fileID: 6071673781552205508}
   tireMarkTrail: {fileID: 1185905972910018965, guid: 67f7afe6da362364ea3566b9888c94ff, type: 3}
+  trailOffset: {x: 0, y: 0.05, z: 0}
   smokeParticles: {fileID: 1169773065367822, guid: aba5b0bd0087f184ab6a63de0385aa51, type: 3}
   wheelEmitters:
     FR_WheelParticles: {fileID: 0}
@@ -4341,6 +4281,8 @@ MonoBehaviour:
   leaderboard: {fileID: 0}
   playerName: 
   laptime: 0
+  raceFinished: 0
+  checkPointPassed: 0
   timer: {fileID: 0}
 --- !u!114 &5804546852157532786
 MonoBehaviour:
@@ -6078,13 +6020,13 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 3
+    m_Stiffness: 5
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 3
+    m_Stiffness: 5
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6268,13 +6210,13 @@ WheelCollider:
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
-    m_Stiffness: 3
+    m_Stiffness: 5
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
     m_AsymptoteSlip: 0.5
     m_AsymptoteValue: 0.75
-    m_Stiffness: 3
+    m_Stiffness: 5
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
