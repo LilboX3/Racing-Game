@@ -46,9 +46,10 @@ public class CarController : MonoBehaviour
 
     [Header("Stats")]
     [SerializeField] private float health = 100f;
+    [SerializeField] private Image healthBar;
     private bool isImmune = false;  // Immunity flag
     private float immunityDuration = 0.5f;  // Immunity duration in seconds
-    [SerializeField] private Text healthText;
+    //[SerializeField] private Text healthText;
     [SerializeField] private ParticleSystem smokeParticleSystem; // Reference to the smoke particle system
     [SerializeField] private ParticleSystem explosionParticleSystem; // Reference to the explosion particle system
     [SerializeField] private float healthThreshold = 50f; // Health threshold to enable isDamaged
@@ -139,9 +140,10 @@ public class CarController : MonoBehaviour
 
     private void UpdateHealthText()
     {
-        if (healthText != null) //TODO: setup health bar here
+        if (healthBar != null)
         {
-            healthText.text = "HP: " + health.ToString("0") + "/100";
+            //healthText.text = "HP: " + health.ToString("0") + "/100";
+            healthBar.fillAmount = health/100f;
         }
     }
 
