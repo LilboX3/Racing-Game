@@ -23,6 +23,16 @@ public class MenuScript : MonoBehaviour
         Application.Quit();
     }
 
+    public void OpenMainMenu()
+    {
+        SceneManager.LoadSceneAsync(0);
+    }
+
+    public void OpenLeaderboard()
+    {
+        SceneManager.LoadSceneAsync(4);
+    }
+
     public void RestartGame()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;

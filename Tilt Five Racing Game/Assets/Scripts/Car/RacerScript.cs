@@ -9,7 +9,7 @@ public class RacerScript : MonoBehaviour
 {
     public GameObject leaderboard;
 
-    public string playerName;
+    public static string playerName;
     public float laptime;
     public bool raceFinished = false;
 
@@ -25,15 +25,7 @@ public class RacerScript : MonoBehaviour
     {
         leaderboardScript = leaderboard.GetComponent<Leaderboard>();
 
-        /*Debug.Log(MultiplayerValueController.player1Name);
-        if (gameObject.name == "Drift Racer")
-        {
-            playerName = MultiplayerValueController.player1Name;
-        }
-        else if (gameObject.name == "Drift Racer (1)")
-        {
-            playerName = MultiplayerValueController.player2Name;
-        }*/
+        // TODO: set name in main menu
     }
 
     // Update is called once per frame
@@ -59,6 +51,7 @@ public class RacerScript : MonoBehaviour
         raceFinished = true;
         TimerRunning = false;
         //leaderboard.SetActive(true);
+        //TODO: show leaderboard, try again, main menu
         leaderboardScript.AddScore(playerName, laptime);
     }
 
@@ -71,6 +64,7 @@ public class RacerScript : MonoBehaviour
 
         if(other.gameObject.name == "CheckPoint LightRay Cube 1")
         {
+            //TODO: show halftime
             checkPointPassed = true;
         }
     }
