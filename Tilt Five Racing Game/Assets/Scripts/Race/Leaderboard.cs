@@ -13,9 +13,9 @@ public class Leaderboard : MonoBehaviour
         public float time;
     }
 
-    public static GameObject[] slots;
-    [SerializeField] private static TextMeshProUGUI[] nameTexts;
-    [SerializeField] private static TextMeshProUGUI[] timeTexts;
+    public static GameObject[] slots = new GameObject[5];
+    [SerializeField] private static TextMeshProUGUI[] nameTexts = new TextMeshProUGUI[5];
+    [SerializeField] private static TextMeshProUGUI[] timeTexts = new TextMeshProUGUI[5];
 
     private static List<Racer> racers = new List<Racer>();
 

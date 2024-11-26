@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class RacerScript : MonoBehaviour
 {
-    public GameObject leaderboard;
+    public GameObject midTimeText;
 
     public static string playerName;
     public float laptime;
@@ -16,7 +16,6 @@ public class RacerScript : MonoBehaviour
     private bool TimerRunning = false;
     private bool startTimer = false;
     public bool checkPointPassed = false;
-    private Leaderboard leaderboardScript;
 
     public UnityEngine.UI.Text timer;
 
@@ -24,7 +23,6 @@ public class RacerScript : MonoBehaviour
     void Start()
     {
         Debug.Log("PLAYERS NAME IS: " + playerName);
-        leaderboardScript = leaderboard.GetComponent<Leaderboard>();
 
         // TODO: set name in main menu
     }
@@ -65,9 +63,17 @@ public class RacerScript : MonoBehaviour
 
         if(other.gameObject.name == "CheckPoint LightRay Cube 1")
         {
-            //TODO: show halftime
+            midTimeText.GetComponent<Text>().text = timer.text;
+            midTimeText.SetActive(true);
+            StartCoroutine(SetInactiveAfterSeconds(midTimeText, 3));
             checkPointPassed = true;
         }
+    }
+
+    IEnumerator SetInactiveAfterSeconds(GameObject text, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        text.SetActive(false);
     }
 
 }
