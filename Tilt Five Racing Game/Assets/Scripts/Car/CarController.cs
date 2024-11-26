@@ -80,7 +80,13 @@ public class CarController : MonoBehaviour
     {
         if (!isDead)
         {
-            verticalInput = Input.GetAxis(VERTICAL);
+            if(Input.GetAxis(VERTICAL) != 0)
+            {
+                verticalInput = Input.GetAxis(VERTICAL);
+            } else
+            {
+                verticalInput = Input.GetAxis("Vertical") + Input.GetAxis("Vertical Reverse");
+            }
             horizontalInput = Input.GetAxis(HORIZONTAL);
             isBreaking = (Input.GetAxis("Jump") != 0) ? true : false;
         }

@@ -47,7 +47,7 @@ public class InputManager : MonoBehaviour
 
         horizontal = Input.GetAxis(HORIZONTAL);
         vertical = Input.GetAxis(VERTICAL);
-        handbrake = (Input.GetAxis("Jump1") != 0) ? true : false;
+        handbrake = (Input.GetAxis("Jump") != 0) ? true : false;
         if (Input.GetKey(KeyCode.LeftShift)) {
             boosting = true;
         } 
