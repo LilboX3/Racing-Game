@@ -3902,7 +3902,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7693111920228139747, guid: 58931e8642cfe564b9f75eb006f356b1, type: 3}
       propertyPath: m_Drag
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7693111920228139747, guid: 58931e8642cfe564b9f75eb006f356b1, type: 3}
       propertyPath: m_Constraints
@@ -22715,11 +22715,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 407914, guid: e853eadc5f7696b45a865c55959f923b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 66.3
+      value: 62.56
       objectReference: {fileID: 0}
     - target: {fileID: 407914, guid: e853eadc5f7696b45a865c55959f923b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 146.6
+      value: 147
       objectReference: {fileID: 0}
     - target: {fileID: 407914, guid: e853eadc5f7696b45a865c55959f923b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -25954,7 +25954,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motorForce: 3000
-  breakForce: 100
+  breakForce: 10
   maxSteerAngle: 20
   frontLeftWheelCollider: {fileID: 1448470931}
   frontRightWheelCollider: {fileID: 1857341973}
