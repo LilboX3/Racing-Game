@@ -43,6 +43,7 @@ public class RacerScript : MonoBehaviour
             laptime += Time.deltaTime;
             timer.text = "Time: " + laptime.ToString("F2") + " sec";
         }
+        Debug.Log("PLAYERS NAME IS: " + playerName);
         
     }
 
@@ -52,7 +53,7 @@ public class RacerScript : MonoBehaviour
         TimerRunning = false;
         //leaderboard.SetActive(true);
         //TODO: show leaderboard, try again, main menu
-        leaderboardScript.AddScore(playerName, laptime);
+        Leaderboard.AddScore(playerName, laptime);
     }
 
     void OnTriggerEnter(Collider other)

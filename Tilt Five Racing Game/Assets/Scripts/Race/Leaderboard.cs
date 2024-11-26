@@ -13,13 +13,11 @@ public class Leaderboard : MonoBehaviour
         public float time;
     }
 
-    public GameObject[] slots;
-    [SerializeField] private TextMeshProUGUI[] nameTexts;
-    [SerializeField] private TextMeshProUGUI[] timeTexts;
+    public static GameObject[] slots;
+    [SerializeField] private static TextMeshProUGUI[] nameTexts;
+    [SerializeField] private static TextMeshProUGUI[] timeTexts;
 
-    private List<Racer> racers = new List<Racer>();
-    [SerializeField] private int amountFinished = 0;
-    [SerializeField] private int shouldFinish;
+    private static List<Racer> racers = new List<Racer>();
 
     void Start()
     {
@@ -27,22 +25,14 @@ public class Leaderboard : MonoBehaviour
         //timeTexts = slots.Select(s => s.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>()).ToArray();
     }
 
-    public void AddScore(string name, float time)
+    public static void AddScore(string name, float time)
     {
-        amountFinished++;
-        Debug.Log("Amount finished is " + amountFinished + "  should be "+shouldFinish);
         racers.Add(new Racer { name = name, time = time });
         racers = racers.OrderBy(r => r.time).ToList();
         UpdateLeaderboard();
-        if (amountFinished >= shouldFinish)
-        {
-            Time.timeScale = 0.2f;
-            Debug.Log("all finished!!");
-            gameObject.SetActive(true);
-        }
     }
 
-    void UpdateLeaderboard()
+    public static void UpdateLeaderboard()
     {
         for (int i = 0; i < slots.Length; i++)
         {
