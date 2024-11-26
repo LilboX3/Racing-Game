@@ -23,6 +23,7 @@ public class RacerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("PLAYERS NAME IS: " + playerName);
         leaderboardScript = leaderboard.GetComponent<Leaderboard>();
 
         // TODO: set name in main menu
@@ -43,7 +44,6 @@ public class RacerScript : MonoBehaviour
             laptime += Time.deltaTime;
             timer.text = "Time: " + laptime.ToString("F2") + " sec";
         }
-        Debug.Log("PLAYERS NAME IS: " + playerName);
         
     }
 

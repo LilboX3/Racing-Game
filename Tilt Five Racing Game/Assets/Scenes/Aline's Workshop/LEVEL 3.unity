@@ -1760,7 +1760,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7433628856226801369, guid: 73f9f86e52ec5d64bb875541a3a006b5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -9.0000305
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7433628856226801369, guid: 73f9f86e52ec5d64bb875541a3a006b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -12019,6 +12019,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d9ebe7e080db34a91a0f995edc6029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentPlayerName: 
+  nameShowcase: {fileID: 0}
 --- !u!114 &1462617182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16094,11 +16096,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4594a423545df428447f5c045e8236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slots: []
-  nameTexts: []
-  timeTexts: []
-  amountFinished: 0
-  shouldFinish: 0
 --- !u!114 &1986215571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16482,26 +16479,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4594a423545df428447f5c045e8236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slots:
-  - {fileID: 627383195}
-  - {fileID: 1273969507}
-  - {fileID: 622281037}
-  - {fileID: 359319500}
-  - {fileID: 2027150361}
-  nameTexts:
-  - {fileID: 731783053}
-  - {fileID: 930740879}
-  - {fileID: 1791375176}
-  - {fileID: 1454470324}
-  - {fileID: 521449684}
-  timeTexts:
-  - {fileID: 1397439231}
-  - {fileID: 1818139721}
-  - {fileID: 923783667}
-  - {fileID: 1822022613}
-  - {fileID: 1676600840}
-  amountFinished: 0
-  shouldFinish: 1
 --- !u!114 &2014788783
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6805,7 +6805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7433628856226801369, guid: 73f9f86e52ec5d64bb875541a3a006b5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -9.0000305
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7433628856226801369, guid: 73f9f86e52ec5d64bb875541a3a006b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -12792,6 +12792,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02d9ebe7e080db34a91a0f995edc6029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentPlayerName: 
+  nameShowcase: {fileID: 0}
 --- !u!114 &487526596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16580,26 +16582,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4594a423545df428447f5c045e8236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slots:
-  - {fileID: 1646918515}
-  - {fileID: 1180758314}
-  - {fileID: 1606397851}
-  - {fileID: 1474937844}
-  - {fileID: 1035231856}
-  nameTexts:
-  - {fileID: 1294240773}
-  - {fileID: 595597684}
-  - {fileID: 196601493}
-  - {fileID: 1136931000}
-  - {fileID: 699190318}
-  timeTexts:
-  - {fileID: 1850495795}
-  - {fileID: 397932139}
-  - {fileID: 1771317913}
-  - {fileID: 214319280}
-  - {fileID: 225941136}
-  amountFinished: 0
-  shouldFinish: 1
 --- !u!1001 &621209501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42709,11 +42691,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4594a423545df428447f5c045e8236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slots: []
-  nameTexts: []
-  timeTexts: []
-  amountFinished: 0
-  shouldFinish: 0
 --- !u!1 &1562868135
 GameObject:
   m_ObjectHideFlags: 0
