@@ -3853,6 +3853,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1539871784823376827, guid: 58931e8642cfe564b9f75eb006f356b1, type: 3}
+      propertyPath: levelNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539871784823376827, guid: 58931e8642cfe564b9f75eb006f356b1, type: 3}
       propertyPath: midTimeText
       value: 
       objectReference: {fileID: 1212634885}
@@ -16152,6 +16156,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4594a423545df428447f5c045e8236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  timeSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &621209501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42086,6 +42102,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4594a423545df428447f5c045e8236, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  timeSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1562868135
 GameObject:
   m_ObjectHideFlags: 0

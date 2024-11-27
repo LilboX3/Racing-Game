@@ -16,6 +16,7 @@ public class RacerScript : MonoBehaviour
     private bool TimerRunning = false;
     private bool startTimer = false;
     public bool checkPointPassed = false;
+    public int levelNumber;
 
     public UnityEngine.UI.Text timer;
 
@@ -51,7 +52,8 @@ public class RacerScript : MonoBehaviour
         TimerRunning = false;
         //leaderboard.SetActive(true);
         //TODO: show leaderboard, try again, main menu
-        Leaderboard.AddScore(playerName, laptime);
+        Debug.Log("Adding to leaderboard with: "+playerName+" and "+laptime);
+        Leaderboard.AddScore(playerName, laptime, levelNumber);
     }
 
     void OnTriggerEnter(Collider other)
