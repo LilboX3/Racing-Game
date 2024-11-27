@@ -96,15 +96,44 @@ public class Leaderboard : MonoBehaviour
                 racers = racersLevel3;
                 break;
         }
+        Debug.Log("racers filled with: " + racers[0].name);
 
-        for (int i = 0; i < racers.Count; i++)
+        for (int i = 0; i < nameSlots.Length; i++)
         {
-            nameSlots[i].text = racers[i].name;
+            if(i < racers.Count)
+            {
+                nameSlots[i].text = racers[i].name;
+            } else
+            {
+                nameSlots[i].text = "";
+            }
         }
-        for (int i = 0; i < racers.Count; i++)
+        for (int i = 0; i < timeSlots.Length; i++)
         {
-            timeSlots[i].text = racers[i].time.ToString("F2");
+            if (i < racers.Count)
+            {
+                timeSlots[i].text = racers[i].time.ToString("F2");
+            }
+            else
+            {
+                timeSlots[i].text = "";
+            }
         }
+    }
+
+    public void ShowLevel1()
+    {
+        FillUIBoard(1);
+    }
+
+    public void ShowLevel2()
+    {
+        FillUIBoard(2);
+    }
+
+    public void ShowLevel3()
+    {
+        FillUIBoard(3);
     }
 
 }
