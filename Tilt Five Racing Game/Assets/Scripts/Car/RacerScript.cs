@@ -8,6 +8,8 @@ using UnityEngine.UI;
 public class RacerScript : MonoBehaviour
 {
     public GameObject midTimeText;
+    public GameObject endMenu;
+    public Text finalTime;
 
     public static string playerName;
     public float laptime;
@@ -50,8 +52,8 @@ public class RacerScript : MonoBehaviour
     {
         raceFinished = true;
         TimerRunning = false;
-        //leaderboard.SetActive(true);
-        //TODO: show leaderboard, try again, main menu
+        finalTime.text = timer.text;
+        endMenu.SetActive(true);
         Debug.Log("Adding to leaderboard with: "+playerName+" and "+laptime);
         Leaderboard.AddScore(playerName, laptime, levelNumber);
     }
