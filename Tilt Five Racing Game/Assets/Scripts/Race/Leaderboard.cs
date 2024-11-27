@@ -3,12 +3,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using static Leaderboard;
 
 
 [System.Serializable]
 public class LeaderboardData
 {
-    public List<Leaderboard.Racer> racers = new List<Leaderboard.Racer>();
+    public List<Leaderboard.Racer> racersLevel1 = new List<Leaderboard.Racer>();
+    public List<Leaderboard.Racer> racersLevel2 = new List<Leaderboard.Racer>();
+    public List<Leaderboard.Racer> racersLevel3 = new List<Leaderboard.Racer>();
 }
 
 public class Leaderboard : MonoBehaviour
@@ -20,45 +23,37 @@ public class Leaderboard : MonoBehaviour
         public float time;
     }
 
-    public static GameObject[] slots = new GameObject[5];
-    private static string[] nameTexts = new string[5];
-    private static string[] timeTexts = new string[5];
-
     public TextMeshProUGUI[] nameSlots = new TextMeshProUGUI[5];
     public TextMeshProUGUI[] timeSlots = new TextMeshProUGUI[5];
 
-    private static List<Racer> racers = new List<Racer>();
+    private static List<Racer> racersLevel1 = new List<Racer>();
+    private static List<Racer> racersLevel2 = new List<Racer>();
+    private static List<Racer> racersLevel3 = new List<Racer>();
 
     void Start()
     {
-        //nameTexts = slots.Select(s => s.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>()).ToArray();
-        //timeTexts = slots.Select(s => s.transform.GetChild(2).gameObject.GetComponent<TextMeshProUGUI>()).ToArray();
         LoadLeaderboard();
-        FillUIBoard();
+        FillUIBoard(1);
     }
 
     public static void AddScore(string newName, float newTime, int levelNumber)
     {
+        LoadLeaderboard();
         Debug.Log("RECEIVED: " + newName + " & " + newTime);
-        racers.Add(new Racer { name = newName, time = newTime });
-        racers = racers.OrderBy(r => r.time).ToList();
-        UpdateLeaderboard();
-    }
-
-    public static void UpdateLeaderboard()
-    {
-        for (int i = 0; i < slots.Length; i++)
+        switch (levelNumber)
         {
-            if (i < racers.Count)
-            {
-                nameTexts[i] = racers[i].name;
-                timeTexts[i] = racers[i].time.ToString("F2");
-            }
-            else
-            {
-                nameTexts[i] = "-";
-                timeTexts[i] = "-";
-            }
+            case 1:
+                racersLevel1.Add(new Racer { name = newName, time = newTime });
+                racersLevel1 = racersLevel1.OrderBy(r => r.time).ToList();
+                break;
+            case 2:
+                racersLevel2.Add(new Racer { name = newName, time = newTime });
+                racersLevel2 = racersLevel2.OrderBy(r => r.time).ToList();
+                break;
+            case 3:
+                racersLevel3.Add(new Racer { name = newName, time = newTime });
+                racersLevel3 = racersLevel3.OrderBy(r => r.time).ToList();
+                break;
         }
         SaveLeaderboard();
     }
@@ -66,7 +61,7 @@ public class Leaderboard : MonoBehaviour
     //Persist leaderboard
     public static void SaveLeaderboard()
     {
-        LeaderboardData data = new LeaderboardData { racers = racers };
+        LeaderboardData data = new LeaderboardData { racersLevel1 = racersLevel1, racersLevel2 = racersLevel2, racersLevel3 = racersLevel3 };
         string json = JsonUtility.ToJson(data);
         PlayerPrefs.SetString("Leaderboard", json);
         PlayerPrefs.Save();
@@ -79,21 +74,36 @@ public class Leaderboard : MonoBehaviour
         {
             string json = PlayerPrefs.GetString("Leaderboard");
             LeaderboardData data = JsonUtility.FromJson<LeaderboardData>(json);
-            racers = data.racers;
+            racersLevel1 = data.racersLevel1;
+            racersLevel2 = data.racersLevel2;
+            racersLevel3 = data.racersLevel3;
             Debug.Log("Leaderboard loaded: " + json);
-            UpdateLeaderboard();
         }
     }
 
-    private void FillUIBoard()
+    private void FillUIBoard(int levelNumber)
     {
-        for (int i = 0; i < nameSlots.Length; i++)
+        List<Racer> racers = new List<Racer>();
+        switch (levelNumber)
         {
-            nameSlots[i].text = nameTexts[i];
+            case 1:
+                racers = racersLevel1;
+                break;
+            case 2:
+                racers = racersLevel2;
+                break;
+            case 3:
+                racers = racersLevel3;
+                break;
         }
-        for (int i = 0; i < timeSlots.Length; i++)
+
+        for (int i = 0; i < racers.Count; i++)
         {
-            timeSlots[i].text = timeTexts[i];
+            nameSlots[i].text = racers[i].name;
+        }
+        for (int i = 0; i < racers.Count; i++)
+        {
+            timeSlots[i].text = racers[i].time.ToString("F2");
         }
     }
 
