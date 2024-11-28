@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class NameData
@@ -14,6 +15,8 @@ public class MenuScript : MonoBehaviour
     public string currentPlayerName;
     public static int playerCount = 0;
     private string previousPlayerName;
+    public GameObject nextFirstSelected;
+    public EventSystem eventSystem;
 
     public TextMeshProUGUI nameShowcase;
 
@@ -63,6 +66,15 @@ public class MenuScript : MonoBehaviour
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
+    }
+
+    public void ChangeFirstSelected()
+    {
+        if(eventSystem != null)
+        {
+            eventSystem.SetSelectedGameObject(nextFirstSelected, new BaseEventData(eventSystem));
+            Debug.Log("Now selected " + nextFirstSelected.name);
+        }
     }
 
     //Persist playercount
