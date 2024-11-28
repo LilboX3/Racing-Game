@@ -18,6 +18,10 @@ public class RacerScript : MonoBehaviour
     public float laptime;
     public bool raceFinished = false;
 
+    private AudioSource audioSource;
+
+    [SerializeField] private AudioClip engineStartSound;
+
     private bool TimerRunning = false;
     private bool startTimer = false;
     public bool checkPointPassed = false;
@@ -29,7 +33,7 @@ public class RacerScript : MonoBehaviour
     void Start()
     {
         Debug.Log("PLAYERS NAME IS: " + playerName);
-
+        audioSource = GetComponent<AudioSource>();
         // TODO: set name in main menu
     }
 
@@ -41,6 +45,7 @@ public class RacerScript : MonoBehaviour
             Debug.Log("Key pressed, starting timer now");
             startTimer = true;
             TimerRunning = true;
+            audioSource.PlayOneShot(engineStartSound);
         }
         if (startTimer&&TimerRunning)
         {

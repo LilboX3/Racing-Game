@@ -20165,6 +20165,10 @@ PrefabInstance:
       propertyPath: buttonToSelect
       value: 
       objectReference: {fileID: 894826811}
+    - target: {fileID: 7417405429312615174, guid: dd01663692b4c224fb3a3a9d174c2efb, type: 3}
+      propertyPath: engineStartSound
+      value: 
+      objectReference: {fileID: 8300000, guid: f90d2412cefca404cba80202baddb8d1, type: 3}
     - target: {fileID: 8562513022250831637, guid: dd01663692b4c224fb3a3a9d174c2efb, type: 3}
       propertyPath: m_ForwardFriction.m_Stiffness
       value: 5

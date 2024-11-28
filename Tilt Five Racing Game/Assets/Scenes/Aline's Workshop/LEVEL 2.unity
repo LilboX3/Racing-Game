@@ -3876,6 +3876,10 @@ PrefabInstance:
       propertyPath: buttonToSelect
       value: 
       objectReference: {fileID: 859587332}
+    - target: {fileID: 1539871784823376827, guid: 58931e8642cfe564b9f75eb006f356b1, type: 3}
+      propertyPath: engineStartSound
+      value: 
+      objectReference: {fileID: 8300000, guid: f90d2412cefca404cba80202baddb8d1, type: 3}
     - target: {fileID: 1711505213257210252, guid: 58931e8642cfe564b9f75eb006f356b1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
