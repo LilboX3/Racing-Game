@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class RacerScript : MonoBehaviour
@@ -10,6 +11,8 @@ public class RacerScript : MonoBehaviour
     public GameObject midTimeText;
     public GameObject endMenu;
     public Text finalTime;
+    public EventSystem eventSystem;
+    public GameObject buttonToSelect;
 
     public static string playerName;
     public float laptime;
@@ -50,6 +53,13 @@ public class RacerScript : MonoBehaviour
 
     private void FinishRace()
     {
+        CarController carController = gameObject.GetComponent<CarController>();
+        carController.EndGame();
+        if (eventSystem != null)
+        {
+            eventSystem.SetSelectedGameObject(buttonToSelect, new BaseEventData(eventSystem));
+            Debug.Log("Now selected " + buttonToSelect.name);
+        }
         raceFinished = true;
         TimerRunning = false;
         finalTime.text = timer.text;

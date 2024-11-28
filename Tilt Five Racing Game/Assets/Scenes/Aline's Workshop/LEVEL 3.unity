@@ -11182,7 +11182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 894826811}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1336845361
@@ -12627,6 +12627,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPlayerName: 
+  nextFirstSelected: {fileID: 0}
+  eventSystem: {fileID: 0}
   nameShowcase: {fileID: 0}
 --- !u!114 &1462617182
 MonoBehaviour:
@@ -20126,6 +20128,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 886084514}
     - target: {fileID: 7417405429312615174, guid: dd01663692b4c224fb3a3a9d174c2efb, type: 3}
+      propertyPath: eventSystem
+      value: 
+      objectReference: {fileID: 1336845360}
+    - target: {fileID: 7417405429312615174, guid: dd01663692b4c224fb3a3a9d174c2efb, type: 3}
       propertyPath: levelNumber
       value: 3
       objectReference: {fileID: 0}
@@ -20133,6 +20139,10 @@ PrefabInstance:
       propertyPath: midTimeText
       value: 
       objectReference: {fileID: 2086808288}
+    - target: {fileID: 7417405429312615174, guid: dd01663692b4c224fb3a3a9d174c2efb, type: 3}
+      propertyPath: buttonToSelect
+      value: 
+      objectReference: {fileID: 894826811}
     - target: {fileID: 8562513022250831637, guid: dd01663692b4c224fb3a3a9d174c2efb, type: 3}
       propertyPath: m_ForwardFriction.m_Stiffness
       value: 5
@@ -20149,7 +20159,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Drift Racer
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7322922846166769398, guid: dd01663692b4c224fb3a3a9d174c2efb, type: 3}
     m_RemovedGameObjects:
     - {fileID: 2792292683057104087, guid: dd01663692b4c224fb3a3a9d174c2efb, type: 3}
     m_AddedGameObjects: []

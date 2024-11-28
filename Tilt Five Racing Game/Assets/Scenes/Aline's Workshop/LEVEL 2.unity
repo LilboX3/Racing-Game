@@ -3857,6 +3857,10 @@ PrefabInstance:
       value: Skibidi
       objectReference: {fileID: 0}
     - target: {fileID: 1539871784823376827, guid: 58931e8642cfe564b9f75eb006f356b1, type: 3}
+      propertyPath: eventSystem
+      value: 
+      objectReference: {fileID: 953446320}
+    - target: {fileID: 1539871784823376827, guid: 58931e8642cfe564b9f75eb006f356b1, type: 3}
       propertyPath: leaderboard
       value: 
       objectReference: {fileID: 0}
@@ -3868,6 +3872,10 @@ PrefabInstance:
       propertyPath: midTimeText
       value: 
       objectReference: {fileID: 1212634885}
+    - target: {fileID: 1539871784823376827, guid: 58931e8642cfe564b9f75eb006f356b1, type: 3}
+      propertyPath: buttonToSelect
+      value: 
+      objectReference: {fileID: 859587332}
     - target: {fileID: 1711505213257210252, guid: 58931e8642cfe564b9f75eb006f356b1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -3954,6 +3962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6071673781552205508, guid: 58931e8642cfe564b9f75eb006f356b1, type: 3}
+    - {fileID: 7603271326092925421, guid: 58931e8642cfe564b9f75eb006f356b1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8554190018125650978, guid: 58931e8642cfe564b9f75eb006f356b1, type: 3}
@@ -11856,6 +11865,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPlayerName: 
+  nextFirstSelected: {fileID: 0}
+  eventSystem: {fileID: 0}
   nameShowcase: {fileID: 0}
 --- !u!114 &487526596
 MonoBehaviour:
@@ -23791,7 +23802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 1102829744}
+  m_FirstSelected: {fileID: 859587332}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &953446321

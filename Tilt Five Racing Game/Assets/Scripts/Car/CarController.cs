@@ -29,6 +29,7 @@ public class CarController : MonoBehaviour
     private float initialMotorForce;
     private bool isBreaking;
     private bool isDead = false;
+    private bool isGameOver = false;
 
     [SerializeField] private float motorForce;
     [SerializeField] private float breakForce;
@@ -78,15 +79,14 @@ public class CarController : MonoBehaviour
 
     private void GetInput()
     {
-        if (!isDead)
+        if (!isDead && !isGameOver)
         {
-            if(Input.GetAxis(VERTICAL) != 0)
+            /*if(Input.GetAxis(VERTICAL) != 0)
             {
                 verticalInput = Input.GetAxis(VERTICAL);
             } else
-            {
-                verticalInput = Input.GetAxis("Vertical") + Input.GetAxis("Vertical Reverse");
-            }
+            {*/
+            verticalInput = Input.GetAxis("Vertical Forward") + Input.GetAxis("Vertical Reverse");
             horizontalInput = Input.GetAxis(HORIZONTAL);
             isBreaking = (Input.GetAxis("Jump") != 0) ? true : false;
         }
@@ -238,7 +238,7 @@ public class CarController : MonoBehaviour
 
         if (health <= 0 && canDrive)
         {
-            StartCoroutine(OnDeath(10f));
+            StartCoroutine(OnDeath(5f));
             Debug.Log("Car is destroyed!");
         }
 
@@ -260,6 +260,12 @@ public class CarController : MonoBehaviour
         damage = Mathf.Min(damage, maxDamage);
 
         return damage;
+    }
+
+    public void EndGame()
+    {
+        Debug.Log("Finished level!!!");
+        isGameOver = true;
     }
 
     public void OnCarCollision()
