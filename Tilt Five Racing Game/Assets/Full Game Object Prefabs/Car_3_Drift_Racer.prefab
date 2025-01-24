@@ -4278,11 +4278,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdcd77096924efc408666339c6e545c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leaderboard: {fileID: 0}
-  playerName: 
+  midTimeText: {fileID: 0}
+  endMenu: {fileID: 0}
+  finalTime: {fileID: 0}
+  eventSystem: {fileID: 0}
+  buttonToSelect: {fileID: 0}
   laptime: 0
   raceFinished: 0
+  engineStartSound: {fileID: 0}
   checkPointPassed: 0
+  levelNumber: 0
   timer: {fileID: 0}
 --- !u!114 &5804546852157532786
 MonoBehaviour:
@@ -6373,6 +6378,10 @@ PrefabInstance:
     - target: {fileID: 4276902028776634407, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
       propertyPath: m_Name
       value: SpeedBoost_Exhaust_Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 4276902028776634407, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4276902028777055239, guid: 9f127a043efd99849a3544da9e035fc7, type: 3}
       propertyPath: m_LocalScale.x
