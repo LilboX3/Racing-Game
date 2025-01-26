@@ -36,7 +36,7 @@ public class MenuScript : MonoBehaviour
 
     public void Update()
     {
-        //Restart game with R key (or A with controller) 
+        //Restart game with R key (or X with controller) 
         if (Input.GetButton("Restart"))
         {
             RestartGame();
