@@ -145,6 +145,7 @@ public class Car_SFX_Controller : MonoBehaviour
                 break;
         }
         // Play the assigned sound
+        audioSource.loop = false;
         audioSource.Play();
     }
 

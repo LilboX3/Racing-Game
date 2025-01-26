@@ -40,12 +40,13 @@ public class RacerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!startTimer && (Input.GetAxis("Vertical") !=0))
+        if(!startTimer && (Input.GetAxis("Vertical Forward") !=0))
         {
             Debug.Log("Key pressed, starting timer now");
             startTimer = true;
             TimerRunning = true;
             audioSource.PlayOneShot(engineStartSound);
+            StartCoroutine(PlayDrivingSoundAfterStart(engineStartSound.length));
         }
         if (startTimer&&TimerRunning)
         {
@@ -54,6 +55,16 @@ public class RacerScript : MonoBehaviour
             timer.text = "Time: " + laptime.ToString("F2") + " sec";
         }
         
+    }
+
+    IEnumerator PlayDrivingSoundAfterStart(float delay)
+    {
+        //wait until start sound is done
+        yield return new WaitForSeconds(delay);
+
+        // Activate motor sound from audio source
+        audioSource.loop = true; //loop motor sound
+        audioSource.Play();
     }
 
     private void FinishRace()
@@ -69,6 +80,8 @@ public class RacerScript : MonoBehaviour
         TimerRunning = false;
         finalTime.text = timer.text;
         endMenu.SetActive(true);
+        audioSource.loop = false;
+        audioSource.Stop();
         Debug.Log("Adding to leaderboard with: "+playerName+" and "+laptime);
         Leaderboard.AddScore(playerName, laptime, levelNumber);
     }

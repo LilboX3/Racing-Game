@@ -6,6 +6,7 @@ public class Car_Collision_Controller : MonoBehaviour
 {
     private Car_SFX_Controller sfxController;
     private CarController carController = null;
+    private AudioSource audioSource;
 
     public enum CollisionType
     {
@@ -18,6 +19,7 @@ public class Car_Collision_Controller : MonoBehaviour
     
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         // Try to get the Car_SFX_Controller component
         sfxController = GetComponent<Car_SFX_Controller>();
 
@@ -58,6 +60,7 @@ public class Car_Collision_Controller : MonoBehaviour
 
             // Play the assigned sound
             sfxController.PlayCollisionSound(collisionType);
+            audioSource.loop = false;
             carController.OnCarCollision();
         }
         else
