@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class NameData
 {
@@ -16,6 +17,8 @@ public class MenuScript : MonoBehaviour
     public static int playerCount = 0;
     private string previousPlayerName;
     public GameObject nextFirstSelected;
+    public GameObject pauseMenu;
+    public GameObject finishMenu;
     public EventSystem eventSystem;
 
     public TextMeshProUGUI nameShowcase;
@@ -41,6 +44,12 @@ public class MenuScript : MonoBehaviour
         {
             RestartGame();
         }
+        if (Input.GetButton("Pause") && pauseMenu != null)
+        {
+            Time.timeScale = 0;
+            pauseMenu.SetActive(true);
+            eventSystem.SetSelectedGameObject(pauseMenu.transform.GetChild(1).gameObject, new BaseEventData(eventSystem));
+        }
     }
     public void PlayGame()
     {
@@ -52,9 +61,17 @@ public class MenuScript : MonoBehaviour
         Application.Quit();
     }
 
+    public void UnPause()
+    {
+        Time.timeScale = 1;
+        pauseMenu.SetActive(false);
+        eventSystem.SetSelectedGameObject(finishMenu.transform.GetChild(1).gameObject, new BaseEventData(eventSystem));
+    }
+
     public void OpenMainMenu()
     {
         SceneManager.LoadSceneAsync(0);
+        Time.timeScale = 1;
     }
 
     public void OpenLeaderboard()
@@ -66,6 +83,7 @@ public class MenuScript : MonoBehaviour
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
+        Time.timeScale = 1;
     }
 
     public void ChangeFirstSelected()
